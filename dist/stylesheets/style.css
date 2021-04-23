@@ -1,0 +1,140 @@
+@import url("https://fonts.googleapis.com/css2?family=Work+Sans:wght@600&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap");
+* {
+  padding: 0;
+  margin: 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+body {
+  min-height: 100vh;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.signup-container {
+  height: 100vh;
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.signup-form {
+  width: 60%;
+  height: 80%;
+}
+
+.create-account-header {
+  font-family: 'Work Sans', sans-serif;
+  margin-bottom: 3rem;
+  font-size: .9rem;
+}
+
+.form-control {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  margin-bottom: 3rem;
+}
+
+.form-control label {
+  margin-bottom: 1rem;
+  color: #7B7B7B;
+  font-family: Montserrat;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 15px;
+  letter-spacing: 0em;
+  text-align: left;
+}
+
+.form-control input {
+  padding: 1rem;
+  font-size: .8rem;
+  border: none;
+  outline: none;
+  background-color: #F4F4F4;
+  border: 2px solid #E5E5E5;
+  -webkit-transition: all .5s ease;
+  transition: all .5s ease;
+  width: 100%;
+}
+
+.form-control input:focus {
+  border-color: #8967D1;
+}
+
+.form-control input.dob {
+  padding: .9rem;
+}
+
+.form-control-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.form-control-container .form-control {
+  width: 49%;
+}
+
+.btn {
+  text-align: center;
+  padding: 1rem;
+  font-weight: 600;
+  border: none;
+  outline: none;
+  cursor: pointer;
+}
+
+.btn.btn-primary {
+  background-color: #8967D1;
+  color: white;
+  font-family: Montserrat;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 15px;
+  text-align: center;
+  -webkit-transition: all .5s ease;
+  transition: all .5s ease;
+}
+
+.btn.btn-primary:hover {
+  background-color: #7354b6;
+}
+
+.wide-btn {
+  width: 100%;
+}
+
+.fa-eye-slash:before, .fa-eye::before {
+  color: #969696;
+  cursor: pointer;
+}
+
+.show-password-container {
+  position: relative;
+}
+
+.show-password-toggle {
+  position: absolute;
+  top: 30%;
+  right: 3%;
+}
+/*# sourceMappingURL=style.css.map */
