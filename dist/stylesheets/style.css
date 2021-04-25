@@ -66,14 +66,30 @@ body {
   border: none;
   outline: none;
   background-color: #F4F4F4;
-  border: 2px solid #E5E5E5;
-  -webkit-transition: all .5s ease;
-  transition: all .5s ease;
   width: 100%;
 }
 
-.form-control input:focus {
-  border-color: #8967D1;
+.form-control .input-group {
+  border: 1px solid #E5E5E5;
+  -webkit-transition: all .3s ease;
+  transition: all .3s ease;
+}
+
+.form-control .input-group:focus-within {
+  -webkit-box-shadow: 1px 2px 3px rgba(0, 0, 0, 0.25);
+          box-shadow: 1px 2px 3px rgba(0, 0, 0, 0.25);
+}
+
+.form-control .invalid {
+  border: 1px solid red;
+}
+
+.form-control label.invalid {
+  border: none;
+  margin-bottom: 0;
+  margin-top: .2rem;
+  color: red;
+  font-size: 10px;
 }
 
 .form-control input.dob {
@@ -128,13 +144,28 @@ body {
   cursor: pointer;
 }
 
-.show-password-container {
-  position: relative;
+.fas.fa-times.wrong-input {
+  color: red;
+  pointer-events: none;
 }
 
-.show-password-toggle {
-  position: absolute;
-  top: 30%;
-  right: 3%;
+.fas.fa-check.proper-input {
+  color: green;
+  pointer-events: none;
+}
+
+.input-group {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.input-group .input-group-btn {
+  padding: 1rem;
+  text-align: center;
+  outline: none;
+  background-color: #F4F4F4;
+  border: none;
+  border-left: none;
 }
 /*# sourceMappingURL=style.css.map */

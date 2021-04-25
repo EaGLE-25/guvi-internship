@@ -17,29 +17,47 @@
             <header class="create-account-header">CREATE AN ACCOUNT</header>
             <div class="form-control-container">
                 <div class="form-control name-container">
-                    <label for="name">Name</label>
-                    <input type="text" id="name" name="name" autocomplete="off">
+                    <label for="name">Name *</label>
+                    <div class="input-group">
+                        <input type="text" id="name" name="name" autocomplete="off">
+                        <button class="input-group-btn invalid-input-indicator">
+                        </button>
+                    </div>
                 </div>
                 <div class="form-control email-container">
-                    <label for="email">Email</label>
-                    <input type="email" id="email" name="email">
+                    <label for="email">Email *</label>
+                    <div class="input-group">
+                        <input type="email" id="email" name="email">
+                        <button class="input-group-btn invalid-input-indicator">
+                        </button>
+                    </div>
                 </div>
             </div>
             <div class="form-control password">
-                <label for="password">Password</label>
-                <div class="show-password-container">
-                    <input type="password" id="password" name="password" autocomplete="off">
-                    <i class="far fa-eye show-password-toggle"></i>
-                </div>
+                <label for="password">Password *</label>
+                    <div class="input-group">
+                        <input type="password" id="password" name="password" autocomplete="off">
+                        <button class="input-group-btn invalid-input-indicator">
+                        </button>
+                        <button class="input-group-btn show-password-btn">
+                            <i class="far fa-eye show-password-toggle"></i>
+                        </button>
+                    </div>
             </div>
             <div class="form-control-container">
                 <div class="form-control dob-container">
                     <label for="dob">Date of Birth</label>
-                    <input type="date" id="dob" name="date" style=" padding: .85rem;">
+                    <div class="input-group">
+                        <input type="date" id="dob" name="date" style=" padding: .85rem;">
+                    </div>
                 </div>
                 <div class="form-control mob-container">
-                    <label for="mob">Mobile Number</label>
-                    <input type="tel" id="mob" name="mob">
+                    <label for="mob">Mobile Number *</label>
+                    <div class="input-group">
+                        <input type="tel" id="mob" name="mob">
+                        <button class="input-group-btn invalid-input-indicator">
+                        </button>
+                    </div>
                 </div>
             </div>
             <button class="btn btn-primary wide-btn create-account" type="submit">
@@ -50,6 +68,9 @@
     </div>
 
     <script src="../scripts/lib/jQuery/jquery-3.6.0.min.js"></script>
+    <script src="../scripts/lib/jQuery/jquery.validate.min.js"></script>
+    <script src="../scripts/lib/jQuery/additional-methods.min.js"></script>
     <script src="../scripts/signup.js"></script>
+    <script src="../scripts/validations.js"></script>
 </body>
 </html>
