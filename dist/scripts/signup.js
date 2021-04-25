@@ -1,7 +1,12 @@
 let showPasswordToggle = $(".show-password-toggle");
+let showPasswordBtn = $(".show-password-btn");
 // let inputFields = $(".signup-form input");
 
 // console.log(inputFields);
+
+showPasswordBtn.click(e=>{
+    e.preventDefault();
+})
 
 showPasswordToggle.click((e)=>{
     let passwordInputField = $("#password");

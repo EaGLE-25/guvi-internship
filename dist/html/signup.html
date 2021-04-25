@@ -7,65 +7,128 @@
     <title>Sign Up</title>
     <!-- stylesheets -->
     <!-- bootstrap -->
-    <link rel="stylesheet" href="../stylesheets/lib/bootstrap-5.0.0-beta3-dist/css/bootstrap-grid.min.css">
+    <link rel="stylesheet" href="../stylesheets/lib/bootstrap-5.0.0-beta3-dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="../stylesheets/style.css">
     <script src="https://kit.fontawesome.com/d9b010d1ce.js" crossorigin="anonymous"></script>
 </head>
-<body>
-    <div class="signup-container">
-        <form class="signup-form">
-            <header class="create-account-header">CREATE AN ACCOUNT</header>
-            <div class="form-control-container">
-                <div class="form-control name-container">
-                    <label for="name">Name *</label>
-                    <div class="input-group">
-                        <input type="text" id="name" name="name" autocomplete="off">
-                        <button class="input-group-btn invalid-input-indicator">
-                        </button>
+<body class="d-flex align-items-center">
+    <div class="container align-items-center">
+        <div class="row justify-content-md-center">
+           <div class="col-sm-12 col-md-10 col-lg-9">
+            <form class="signup-form">
+                <header class="create-account-header">CREATE AN ACCOUNT</header>
+                <div class="form-field-container">
+                    <div class="form-field name-container">
+                        <label for="name">Name *</label>
+                        <div class="inputfield-group">
+                            <input type="text" id="name" name="name" autocomplete="off" placeholder="Enter your name">
+                            <button class="inputfield-group-btn invalid-input-indicator">
+                            </button>
+                        </div>
+                    </div>
+                    <div class="form-field email-container">
+                        <label for="email">Email *</label>
+                        <div class="inputfield-group">
+                            <input type="email" id="email" name="email" placeholder="Enter your email">
+                            <button class="inputfield-group-btn invalid-input-indicator">
+                            </button>
+                        </div>
                     </div>
                 </div>
-                <div class="form-control email-container">
-                    <label for="email">Email *</label>
-                    <div class="input-group">
-                        <input type="email" id="email" name="email">
-                        <button class="input-group-btn invalid-input-indicator">
-                        </button>
+                <div class="form-field password">
+                    <label for="password">Password *</label>
+                        <div class="inputfield-group">
+                            <input type="password" id="password" name="password" autocomplete="off" placeholder="Enter your password">
+                            <button class="inputfield-group-btn invalid-input-indicator">
+                            </button>
+                            <button class="inputfield-group-btn show-password-btn">
+                                <i class="far fa-eye show-password-toggle"></i>
+                            </button>
+                        </div>
+                </div>
+                <div class="form-field-container">
+                    <div class="form-field dob-container">
+                        <label for="dob">Date of Birth</label>
+                        <div class="inputfield-group">
+                            <input type="date" id="dob" name="date" style=" padding: .85rem;">
+                        </div>
+                    </div>
+                    <div class="form-field mob-container">
+                        <label for="mob">Mobile Number *</label>
+                        <div class="inputfield-group">
+                            <input type="tel" id="mob" name="mob" placeholder="Enter your mobile number">
+                            <button class="inputfield-group-btn invalid-input-indicator">
+                            </button>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="form-control password">
-                <label for="password">Password *</label>
-                    <div class="input-group">
-                        <input type="password" id="password" name="password" autocomplete="off">
-                        <button class="input-group-btn invalid-input-indicator">
-                        </button>
-                        <button class="input-group-btn show-password-btn">
-                            <i class="far fa-eye show-password-toggle"></i>
-                        </button>
-                    </div>
-            </div>
-            <div class="form-control-container">
-                <div class="form-control dob-container">
-                    <label for="dob">Date of Birth</label>
-                    <div class="input-group">
-                        <input type="date" id="dob" name="date" style=" padding: .85rem;">
-                    </div>
-                </div>
-                <div class="form-control mob-container">
-                    <label for="mob">Mobile Number *</label>
-                    <div class="input-group">
-                        <input type="tel" id="mob" name="mob">
-                        <button class="input-group-btn invalid-input-indicator">
-                        </button>
-                    </div>
-                </div>
-            </div>
-            <button class="btn btn-primary wide-btn create-account" type="submit">
-                Create Account
-                <i class="fas fa-arrow-right" style="margin-left: .2rem;"></i>
-            </button>
-        </form>
+                <button class="btn btn-primary wide-btn create-account" type="submit">
+                    Create Account
+                    <i class="fas fa-arrow-right" style="margin-left: .2rem;"></i>
+                </button>
+            </form>
+            <footer class="signup-footer">
+                <label>ALREADY A MEMBER? <a href="sigin.html">Sign In</a></label>
+            </footer>
+           </div>
+        </div>
     </div>
+    <!-- <div class="signup-container container-fluid">
+        <div class="row justify-content-md-center">
+            <form class="signup-form col">
+                <header class="create-account-header">CREATE AN ACCOUNT</header>
+                <div class="form-field-container">
+                    <div class="form-field name-container">
+                        <label for="name">Name *</label>
+                        <div class="input-group">
+                            <input type="text" id="name" name="name" autocomplete="off">
+                            <button class="input-group-btn invalid-input-indicator">
+                            </button>
+                        </div>
+                    </div>
+                    <div class="form-field email-container">
+                        <label for="email">Email *</label>
+                        <div class="input-group">
+                            <input type="email" id="email" name="email">
+                            <button class="input-group-btn invalid-input-indicator">
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-field password">
+                    <label for="password">Password *</label>
+                        <div class="input-group">
+                            <input type="password" id="password" name="password" autocomplete="off">
+                            <button class="input-group-btn invalid-input-indicator">
+                            </button>
+                            <button class="input-group-btn show-password-btn">
+                                <i class="far fa-eye show-password-toggle"></i>
+                            </button>
+                        </div>
+                </div>
+                <div class="form-field-container">
+                    <div class="form-field dob-container">
+                        <label for="dob">Date of Birth</label>
+                        <div class="input-group">
+                            <input type="date" id="dob" name="date" style=" padding: .85rem;">
+                        </div>
+                    </div>
+                    <div class="form-field mob-container">
+                        <label for="mob">Mobile Number *</label>
+                        <div class="input-group">
+                            <input type="tel" id="mob" name="mob">
+                            <button class="input-group-btn invalid-input-indicator">
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <button class="btn btn-primary wide-btn create-account" type="submit">
+                    Create Account
+                    <i class="fas fa-arrow-right" style="margin-left: .2rem;"></i>
+                </button>
+            </form>
+        </div>
+    </div> -->
 
     <script src="../scripts/lib/jQuery/jquery-3.6.0.min.js"></script>
     <script src="../scripts/lib/jQuery/jquery.validate.min.js"></script>

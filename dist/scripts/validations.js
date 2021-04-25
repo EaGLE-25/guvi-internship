@@ -8,9 +8,8 @@ $(function(){
 
   $.validator.addMethod("mobile",function(value,element){
       return this.optional(element)
-      || value.length == 10
-      && /^\d*$/.test(value);
-  },"Please enter digits only")
+      || value.length == 10;
+  },"Please enter a valid mobile number")
 
   $(".signup-form").validate({
     errorClass:"invalid",
@@ -30,8 +29,25 @@ $(function(){
         },
         mob:{
           required:true,
-          mobile:true
+          mobile:true,
+          digits:true
         }
+    },
+    messages:{
+      name:{
+        required:"Pleae enter your name",
+      },
+      email:{
+        required:"Please enter your email",
+        email:"Please enter a valid email"
+      },
+      password:{
+        required:"Please enter a password"
+      },
+      mob:{
+        required:"Please enter your mobile number",
+        digits:"Digits only please"
+      }
     },
     success:function(label,input){  
       const errorIndicator = $(input).siblings(".invalid-input-indicator");
@@ -44,7 +60,7 @@ $(function(){
       errorIndicator.html(wrongInputHTML);
     },
     errorPlacement: function(error, element) {
-      $(element).closest(".form-control").append(error);  
+      $(element).closest(".form-field").append(error);  
     },
     focusInvalid:false
   })

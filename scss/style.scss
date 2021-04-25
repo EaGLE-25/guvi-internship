@@ -1,5 +1,25 @@
 @import url('https://fonts.googleapis.com/css2?family=Work+Sans:wght@600&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap');
+
+$primaryColor : #8967D1;
+
+@mixin primaryFontStyle{
+    font-family: Montserrat;
+    font-size: 0.75rem;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 0.9375rem;
+    letter-spacing: 0em;
+    text-align: left; 
+}
+
+@mixin flex($direction:row,$justifyContent:flex-start,$alignItems:stretch){
+    display: flex;
+    flex-direction: $direction;
+    justify-content: $justifyContent;
+    align-items: $alignItems;
+}
+
 *{
     padding: 0;
     margin: 0;
@@ -11,38 +31,20 @@ body{
     font-family: 'Montserrat', sans-serif;
 }
 
-.signup-container{
-    height: 100vh;
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.signup-form{
-    width: 60%;
-    height: 80%;
-}
 .create-account-header{
     font-family: 'Work Sans', sans-serif;
     margin-bottom: 3rem;
     font-size: .9rem;
 }
-.form-control{
-    display: flex;
-    flex-direction: column;
+.form-field{
+    @include flex(column);
     margin-bottom: 3rem;
+}
 
-    label{
+label{
         margin-bottom: 1rem;
         color: #7B7B7B;
-        font-family: Montserrat;
-        font-size: 12px;
-        font-style: normal;
-        font-weight: 600;
-        line-height: 15px;
-        letter-spacing: 0em;
-        text-align: left;        
+        @include primaryFontStyle();     
     }
     input{
         padding: 1rem;
@@ -50,35 +52,23 @@ body{
         border: none;
         outline: none;
         background-color: #F4F4F4;
-        // border-radius: .4rem;
         width: 100%;
     }
-    .input-group{
-        border: 1px solid #E5E5E5;
-        transition: all .3s ease;
-    }
-    .input-group:focus-within{
-       box-shadow: 1px 2px 3px rgba(0, 0, 0, 0.25);
-    }
+
     .invalid{
         border: 1px solid red;
     }
     label.invalid{
         border: none;
         margin-bottom: 0;
-        margin-top: .2rem;
+        margin-top: .4rem;
         color: red;
-        font-size: 10px;
+        font-size: 0.625rem;
     }
-    input.dob{
-        padding: .9rem;
-    }
+.form-field-container{
+    @include flex(row,space-between);
 }
-.form-control-container{
-    display: flex;
-    justify-content: space-between;
-}
-.form-control-container .form-control{
+.form-field-container .form-field{
     width: 49%;
 }
 .btn{
@@ -87,23 +77,21 @@ body{
     font-weight: 600;
     border:none;
     outline: none;
-    // border-radius: .4rem;
     cursor: pointer;
 
     &.btn-primary{
-        background-color: #8967D1;
+        background-color: $primaryColor;
         color: white;
-        font-family: Montserrat;
-        font-size: 12px;
-        font-style: normal;
-        font-weight: 600;
-        line-height: 15px;
+        @include primaryFontStyle();
         text-align: center;
         transition: all .5s ease;
     }
 
     &.btn-primary:hover{
         background-color: #7354b6;
+    }
+    &.btn-primary:focus{
+        box-shadow: 0 0 0 0.25rem rgba(137, 103, 209, 0.493);
     }
 }
 
@@ -126,15 +114,30 @@ body{
     pointer-events: none;
 }
 
-.input-group{
-    display: flex;
+.inputfield-group{
+    @include flex();
+    border: 1px solid #E5E5E5;
+    max-height: 52px;
+    transition: all .3s ease;
 
-    .input-group-btn{
+    .inputfield-group-btn{
         padding: 1rem;
         text-align: center;
         outline: none;
         background-color: #F4F4F4;
         border:none;
         border-left: none;
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
 }
+
+.inputfield-group:focus-within{
+    box-shadow: 1px 2px 3px rgba(0, 0, 0, 0.25);
+ }
+
+ .signup-footer{
+     @include flex(row,center);
+     margin-top: 2rem;
+ }
