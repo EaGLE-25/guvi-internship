@@ -63,5 +63,43 @@ $(function(){
       $(element).closest(".form-field").append(error);  
     },
     focusInvalid:false
+  });
+	
+	
+	$(".signin-form").validate({
+    errorClass:"invalid",
+    validClass:"valid",
+    rules:{
+        email:{
+          required:true,
+          email:true
+        },
+        password:{
+          required:true
+        }
+    },
+    messages:{
+      email:{
+        required:"Please enter your email",
+        email:"Please enter a valid email"
+      },
+      password:{
+        required:"Please enter a password"
+      }
+    },
+    success:function(label,input){  
+      const errorIndicator = $(input).siblings(".invalid-input-indicator");
+      const properInputHTML = `<i class="fas fa-check proper-input"></i>`;
+      errorIndicator.html(properInputHTML);
+    },
+    highlight:function(element){
+      const errorIndicator =  $(element).siblings(".invalid-input-indicator");
+      const wrongInputHTML = `<i class="fas fa-times wrong-input"></i>`;
+      errorIndicator.html(wrongInputHTML);
+    },
+    errorPlacement: function(error, element) {
+      $(element).closest(".form-field").append(error);  
+    },
+    focusInvalid:false
   })
 })
