@@ -15,7 +15,7 @@
     <div class="container align-items-center">
         <div class="row justify-content-md-center">
            <div class="col-sm-12 col-md-10 col-lg-9">
-            <form class="signup-form">
+            <form class="signup-form" method="POST" action="/guvi internship/dist/scripts/php/signup.php">
                 <header class="create-account-header">CREATE AN ACCOUNT</header>
                 <div class="form-field-container">
                     <div class="form-field name-container">
@@ -39,7 +39,7 @@
                     <label for="password">Password *</label>
                         <div class="inputfield-group">
                             <input type="password" id="password" name="password" autocomplete="off" placeholder="Enter your password">
-                            <button class="inputfield-group-btn invalid-input-indicator">
+                            <button class="inputfield-group-btn invalid-input-indicator" style="border-right: none;">
                             </button>
                             <button class="inputfield-group-btn show-password-btn">
                                 <i class="far fa-eye show-password-toggle"></i>
@@ -75,10 +75,11 @@
     </div>
   
 
-    <script src="../scripts/lib/jQuery/jquery-3.6.0.min.js"></script>
-    <script src="../scripts/lib/jQuery/jquery.validate.min.js"></script>
-    <script src="../scripts/lib/jQuery/additional-methods.min.js"></script>
-    <script src="../scripts/showPassword.js"></script>
-    <script src="../scripts/validations.js"></script>
+    <script src="../scripts/js/lib/jQuery/jquery-3.6.0.min.js"></script>
+    <script src="../scripts/js/lib/jQuery/jquery.validate.min.js"></script>
+    <script src="../scripts/js/lib/jQuery/additional-methods.min.js"></script>
+    <script src="../scripts/js/showPassword.js"></script>
+    <script src="../scripts/js/signup.js"></script>
+    <script src="../scripts/js/validations.js"></script>
 </body>
 </html>
