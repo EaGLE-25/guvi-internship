@@ -78,6 +78,7 @@ label{
     border:none;
     outline: none;
     cursor: pointer;
+    min-width: 200px;
 
     &.btn-primary{
         background-color: $primaryColor;
@@ -140,4 +141,19 @@ label{
  .signup-footer{
      @include flex(row,center);
      margin-top: 2rem;
+ }
+
+ .home-container{
+     @include flex(column,center,center);
+     height: 100vh;
+
+     .jumbo{
+        font-family: 'Work Sans', sans-serif;
+        font-size: 5rem;
+        margin-bottom: 2rem;
+     }
+ }
+ .link-btn{
+     display: inline-block;
+     text-decoration: none;
  }
