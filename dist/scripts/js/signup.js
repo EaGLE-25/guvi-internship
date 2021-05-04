@@ -1,17 +1,19 @@
 const signupForm = $(".signup-form");
 
-
-signupForm.submit(function(e){
+signupForm.submit(async function(e){
     e.preventDefault();
-    const formData = createFormData(".signup-form");
     const url = $(this).attr("action");
-    fetch(url,{
-        method:'POST',
-        mode:'same-origin',
-        body: formData
-    }).then(res=> res.json())
-    .then(data=>console.log(data));
+    const formData = createFormData(".signup-form");
+    
+    const response = await fetch(url,{
+        method:"POST",
+        mode:"same-origin",
+        body:formData
+    });
+
+    response.then(res=>res.json()).then(data=>console.log(data));
 })
+
 
 function createFormData(formClassname){
     const inputFields = $(formClassname+" input");
