@@ -165,6 +165,7 @@ label{
   
     transition: bottom 0.5s, opacity 0.5s;
   }
+
   
   .snackbar > div{
     background-color: #333;
@@ -178,6 +179,12 @@ label{
     align-items: center;
   
     border-radius: 5px;
+  }
+  .snackbar.error-snackbar > div{
+      background-color: red;
+  }
+  .snackbar.success-snackbar > div{
+      background-color: green;
   }
   
   .snackbar.show {

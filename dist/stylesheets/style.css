@@ -254,6 +254,14 @@ label.invalid {
   border-radius: 5px;
 }
 
+.snackbar.error-snackbar > div {
+  background-color: red;
+}
+
+.snackbar.success-snackbar > div {
+  background-color: green;
+}
+
 .snackbar.show {
   bottom: 30px;
   opacity: 1;
@@ -280,7 +288,7 @@ label.invalid {
           align-items: center;
 }
 
-.creating-account-span.hide{
+.creating-account-span.hide {
   display: none;
 }
 /*# sourceMappingURL=style.css.map */
