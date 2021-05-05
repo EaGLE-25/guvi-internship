@@ -1,8 +1,10 @@
 <?php
    require "entity/User.php";
+   require "serviceClasses/UserService.php";
 
     if(isset($_POST['name'])){
         $newUser = new User();
+        $userService = new UserService();
 
         $name = $_POST['name'];
         $email = $_POST['email'];
@@ -17,11 +19,11 @@
             $newUser->setDob($dob);
             $newUser->setMobile($mobile);
 
-            print_r($newUser);
+            $userService->persistUser($newUser);
         }
         catch(Exception $e) {
             http_response_code(400);
-            echo $e->errorMessage();
+            echo $e->getMessage();
         }
     }
 ?>

@@ -54,10 +54,6 @@ label{
         background-color: #F4F4F4;
         width: 100%;
     }
-
-    .invalid{
-        border: 1px solid red;
-    }
     label.invalid{
         border: none;
         margin-bottom: 0;
@@ -157,3 +153,52 @@ label{
      display: inline-block;
      text-decoration: none;
  }
+
+ .snackbar{
+    position: fixed;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+  
+    opacity: 0;
+    pointer-events: none;
+  
+    transition: bottom 0.5s, opacity 0.5s;
+  }
+  
+  .snackbar > div{
+    background-color: #333;
+    color: white;
+  
+    min-width: 150px;
+    padding: 15px;
+  
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  
+    border-radius: 5px;
+  }
+  
+  .snackbar.show {
+    bottom: 30px;
+    opacity: 1;
+  
+    pointer-events: all;
+  }
+
+.hide{
+    display: none;
+}
+.show{
+    display: block;
+}
+
+.creating-account-span.show{
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+}
+.creating-account-span.hide{
+    display: none;
+}
