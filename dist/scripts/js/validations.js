@@ -58,6 +58,7 @@ $(function(){
       errorIndicator.html(properInputHTML);
     },
     highlight:function(element){
+      $(element).removeClass("valid");
       $(element).addClass("invalid");
       const errorIndicator =  $(element).siblings(".invalid-input-indicator");
       const wrongInputHTML = `<i class="fas fa-times wrong-input"></i>`;
