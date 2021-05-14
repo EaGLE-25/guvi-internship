@@ -1,5 +1,4 @@
-$(function(){
-    $.validator.addMethod("strongPassword",function(value,element){
+ $.validator.addMethod("strongPassword",function(value,element){
       return this.optional(element)
       || value.length >=6
       && /\d/.test(value)
@@ -12,7 +11,7 @@ $(function(){
     && /^\d*$/.test(value);
   },"Please enter a valid mobile number")
 
-  $(".signup-form").validate({
+  let signupValidator = $(".signup-form").validate({
     errorClass:"invalid",
     validClass:"valid",
     rules:{
@@ -23,7 +22,7 @@ $(function(){
         email:{
           required:true,
           email:true,
-          remote:'/dist/scripts/php/isEmailAvailable.php'
+          remote:'/guvi internship/dist/scripts/php/isEmailAvailable.php'
         },
         password:{
           required:true,
@@ -75,7 +74,7 @@ $(function(){
   });
 	
 	
-	$(".signin-form").validate({
+	let signinValidator = $(".signin-form").validate({
     errorClass:"invalid",
     validClass:"valid",
     rules:{
@@ -106,4 +105,3 @@ $(function(){
     },
     focusInvalid:false
   })
-})

@@ -67,7 +67,9 @@ function signupSuccess(){
     creatingAccSpan.addClass("hide");
     createAccountBtn.blur();
     
-    // reset the form
+    // reset the validators
+    signupValidator.resetForm();
+    // reset all the input fields
     signupForm[0].reset();
     // remove error indicators
     errorIndingIcons.forEach(icon=>icon.remove());
