@@ -7,8 +7,9 @@ $(function(){
   },"Your password must be atleast 6 characters long and contain atleast one number and one character");
 
   $.validator.addMethod("mobile",function(value,element){
-      return this.optional(element)
-      || value.length == 10;
+    return this.optional(element)
+    || value.length == 10
+    && /^\d*$/.test(value);
   },"Please enter a valid mobile number")
 
   $(".signup-form").validate({
@@ -21,7 +22,8 @@ $(function(){
         },
         email:{
           required:true,
-          email:true
+          email:true,
+          remote:'/guvi internship/dist/scripts/php/isEmailAvailable.php'
         },
         password:{
           required:true,
@@ -39,7 +41,8 @@ $(function(){
       },
       email:{
         required:"Please enter your email",
-        email:"Please enter a valid email"
+        email:"Please enter a valid email",
+        remote:"This email is already associated with a account.Would like to <a href='../../html/signin.html'>login</a>"
       },
       password:{
         required:"Please enter a password"

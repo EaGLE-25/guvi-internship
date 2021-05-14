@@ -1,8 +1,10 @@
 <?php
  class NameException extends Exception{
-  public function errorMessage() {
-    $errorMsg = $this->getMessage().' is not a valid name';
-    return $errorMsg;
+  public function getError() {
+    $code = $this->getCode();
+    $message = $this->getMessage();
+    $err_arr = array("code"=>$code,"message"=>$message);
+    return $err_arr;
   }
  }
 ?>

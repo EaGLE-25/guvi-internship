@@ -2,8 +2,10 @@
     require_once "serviceClasses/ValidationService.php";
     require_once "exception/NameException.php";
     require_once "exception/EmailException.php";
+    require_once "exception/MobileException.php";
 
 class User{
+  private $uuid;
   private $name;
   private $email;
   private $passwordHash;
@@ -15,13 +17,21 @@ class User{
     $this->validationService = new ValidationService();
   }
 
+  public function getUuid(){
+    return $this->uuid;
+  }
+
+  public function setUuid($uuid){
+    $this->uuid = $uuid;
+  }
+
   public function getName(){
     return $this->name;
   }
 
   public function setName($name){
     if($this->validationService->validateName($name) == FALSE){
-      throw new NameException($name);
+      throw new NameException($name." not a valid name",400);
     }
     $this->name = $name;
   }
@@ -32,7 +42,9 @@ class User{
 
   public function setEmail($email){
     if($this->validationService->validateEmail($email) == FALSE){
-      throw new EmailException($email);
+      throw new EmailException($email." not a valid email",400);
+    }else if($this->validationService->emailTaken($email) == TRUE){
+      throw new EmailException($email." already taken",400);
     }
     $this->email = $email;
   }
@@ -56,6 +68,9 @@ class User{
     return $this->mobile;
   }
   public function setMobile($mobile){
+    if($this->validationService->validateMobile($mobile) == FALSE){
+      throw new MobileException($mobile." not a valid mobile number",400);
+    }
     $this->mobile = $mobile;
   }
 }

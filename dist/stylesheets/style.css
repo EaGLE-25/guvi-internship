@@ -242,6 +242,7 @@ label.invalid {
   color: white;
   min-width: 150px;
   padding: 15px;
+  font-size: 1rem;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -290,5 +291,17 @@ label.invalid {
 
 .creating-account-span.hide {
   display: none;
+}
+
+@media (max-width: 768px) {
+  html {
+    font-size: 95%;
+  }
+}
+
+@media (max-width: 568px) {
+  html {
+    font-size: 90%;
+  }
 }
 /*# sourceMappingURL=style.css.map */

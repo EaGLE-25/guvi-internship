@@ -13,6 +13,7 @@
         $mobile = $_POST['mob'];
         
         try{
+            $newUser->setUuid(uniqid());
             $newUser->setName($name);
             $newUser->setEmail($email);
             $newUser->setPasswordHash($passwordHash);
@@ -22,8 +23,9 @@
             $userService->persistUser($newUser);
         }
         catch(Exception $e) {
-            http_response_code(400);
-            echo $e->getMessage();
+            $err = $e->getError();
+            http_response_code($err['code']);
+            echo json_encode($err); 
         }
     }
 ?>
