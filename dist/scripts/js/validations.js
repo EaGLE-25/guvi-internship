@@ -41,7 +41,7 @@
       email:{
         required:"Please enter your email",
         email:"Please enter a valid email",
-        remote:"This email is already associated with a account.Would like to <a href='../../html/signin.html'>login</a>"
+        remote:"This email is already associated with a account.Would like to <a href='/dist/html/signin.html'>login</a>"
       },
       password:{
         required:"Please enter a password"
