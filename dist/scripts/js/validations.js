@@ -65,6 +65,7 @@ $(function(){
     },
     unhighlight:function(element){
       $(element).removeClass("invalid");
+      $(element).removeClass("valid");
     },
     errorPlacement: function(error, element) {
       $(element).closest(".form-field").append(error);  

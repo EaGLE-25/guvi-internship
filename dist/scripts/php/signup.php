@@ -9,7 +9,7 @@
         $name = $_POST['name'];
         $email = $_POST['email'];
         $passwordHash = password_hash($_POST['password'],PASSWORD_DEFAULT);
-        $dob = $_POST['dob'];
+        $dob = isset($_POST['dob'])?$_POST['dob'] : NULL;
         $mobile = $_POST['mob'];
         
         try{
