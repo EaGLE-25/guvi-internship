@@ -1,5 +1,8 @@
 <?php
-  require_once "dao/UserDao.php";
+  require_once "./vendor/autoload.php";
+
+  namespace service;
+  use dao\UserDao;
 
   class UserService{
     private $userDao;
@@ -12,9 +15,12 @@
       try{
         $this->userDao->insertUser($user);
       }
-      catch(Exception $e){
+      catch(\Exception $e){
         throw $e;
       }
+    }
+    function loginUser($email,$password){
+      
     }
     function saveUserAsJson($user){
       $userAssoc = array(

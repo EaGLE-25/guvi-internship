@@ -1,8 +1,9 @@
 <?php
-    require_once "serviceClasses/ValidationService.php";
-    require_once "exception/NameException.php";
-    require_once "exception/EmailException.php";
-    require_once "exception/MobileException.php";
+    require_once "./vendor/autoload.php";
+    namespace entity;
+    use service\ValidationService;
+    use exception\MobileException,exception\NameException,exception\EmailException;
+    
 
 class User{
   private $uuid;

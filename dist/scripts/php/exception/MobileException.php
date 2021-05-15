@@ -1,4 +1,7 @@
 <?php
+namespace exception;
+use Exception;
+
  class MobileException extends Exception{
   public function getError() {
     $code = $this->getCode();

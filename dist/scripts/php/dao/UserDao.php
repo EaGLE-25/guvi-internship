@@ -1,12 +1,17 @@
 <?php
-    require_once "exception/DatabaseException.php";
+    require_once "./vendor/autoload.php";
+    namespace dao;
+    
+    use exception\DataBaseException;
+    use PDO;
+    use Exception;
+
     
     class UserDao{
         private $host;
         private $dbname;
         private $username;
         private $password;
-        private $conn;
         private $pdo;
 
         function __construct(){

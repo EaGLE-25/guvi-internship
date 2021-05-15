@@ -1,5 +1,9 @@
 <?php
-  require_once "dao/UserDao.php";
+  require_once "./vendor/autoload.php";
+  namespace service;
+  
+  use dao\UserDao;
+  
   
   class ValidationService{
     function validateEmail($email){   
