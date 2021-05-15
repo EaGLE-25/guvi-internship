@@ -20,7 +20,9 @@
             $newUser->setDob($dob);
             $newUser->setMobile($mobile);
 
-            $userService->persistUser($newUser);
+            $userService->signupUser($newUser);
+            $userService->saveUserAsJson($newUser);
+            http_response_code(201);
         }
         catch(Exception $e) {
             $err = $e->getError();

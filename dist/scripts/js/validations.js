@@ -22,7 +22,7 @@
         email:{
           required:true,
           email:true,
-          remote:'/dist/scripts/php/isEmailAvailable.php'
+          remote:'/guvi internship/dist/scripts/php/isEmailAvailable.php'
         },
         password:{
           required:true,
@@ -105,3 +105,5 @@
     },
     focusInvalid:false
   })
+
+  export {signupValidator};
