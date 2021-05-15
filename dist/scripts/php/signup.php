@@ -1,11 +1,14 @@
 <?php
+   require_once "../../vendor/autoload.php";
+
    use Exception;
-   require_once "./vendor/autoload.php";
+   use entity\User;
+   use service\UserService;
    
 
     if(isset($_POST['name'])){
-        $newUser = new entity\User();
-        $userService = new service\UserService();
+        $newUser = new User();
+        $userService = new UserService();
 
         $name = $_POST['name'];
         $email = $_POST['email'];

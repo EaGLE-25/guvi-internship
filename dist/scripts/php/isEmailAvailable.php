@@ -1,5 +1,6 @@
 <?php
-    require_once "serviceClasses/ValidationService.php";
+    use service\ValidationService;
+    require_once "../../../vendor/autoload.php";
 
     $email = $_GET['email'];
     $validationService = new ValidationService();

@@ -1,7 +1,8 @@
 <?php
-  require_once "./vendor/autoload.php";
-
   namespace service;
+  require_once "../../vendor/autoload.php";
+
+
   use dao\UserDao;
 
   class UserService{

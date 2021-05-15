@@ -1,6 +1,7 @@
 <?php
-    require_once "./vendor/autoload.php";
     namespace dao;
+    require_once "../../../vendor/autoload.php";
+
     
     use exception\DataBaseException;
     use PDO;
