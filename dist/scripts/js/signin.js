@@ -3,9 +3,19 @@ import {fetchPost,createFormData, showSnackbar} from "./common.js";
 const signinForm = $(".signin-form");
 
 
+const signingInSpan = $(".signing-in-span");
+const signInSpan = $(".sign-in-span");
+
+
 signinForm.submit(function(e){
     e.preventDefault();
     if(signinForm.valid()){
+        signInSpan.removeClass("show");
+        signInSpan.addClass("hide");
+        signingInSpan.removeClass("hide");
+        signingInSpan.addClass("show");
+
+
         const emailField = $(".signin-form #email")[0];
         const passwordField = $(".signin-form #password")[0];
 
@@ -24,7 +34,14 @@ signinForm.submit(function(e){
         fetchPost(url,null,headers).then(res=>res.json())
         .then(data=>{
             if(data.code>=200 && data.code<=299){
-                console.log(data.message);
+                const accessToken = data.accessToken;
+                const username = data.username;
+
+                sessionStorage.setItem("accessToken",accessToken);
+                sessionStorage.setItem("username",username);
+
+                const path = window.location.pathname;
+                window.location.pathname = "/dist/html/myprofile.html";
             }else{
                 throw new Error(data.message);
             }

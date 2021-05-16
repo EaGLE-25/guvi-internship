@@ -19,9 +19,12 @@
         $email = $emailPasswordArr[0];
         $password = $emailPasswordArr[1];
 
-        $userService->loginUser($email,$password);
+        $authorizedResponseAssoc = $userService->loginUser($email,$password);
+        $authorizedResponseAssoc['code'] = 200;
+        $authorizedResponseAssoc['message'] = "Signin Successfull";
 
-        echo json_encode(array("code"=>200,"message"=>"Signin succesfull"));
+
+        echo json_encode($authorizedResponseAssoc);
     }
     catch(UnauthorizedException $e){
         $err = $e->getError();

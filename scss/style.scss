@@ -202,12 +202,12 @@ label{
     display: block;
 }
 
-.creating-account-span.show{
+.creating-account-span.show,.signing-in-span.show{
     display: inline-flex;
     justify-content: center;
     align-items: center;
 }
-.creating-account-span.hide{
+.creating-account-span.hide,.signing-in-span.hide{
     display: none;
 }
 
