@@ -1,4 +1,4 @@
-import {fetchPost,createFormData} from "./common.js";
+import {fetchPost,createFormData, showSnackbar} from "./common.js";
 
 const signinForm = $(".signin-form");
 
@@ -21,14 +21,20 @@ signinForm.submit(function(e){
         }
 
         const url = signinForm.attr("action");
-        fetchPost(url,null,headers).then(res=>{
-            if(res.ok){
-                res.json();
+        fetchPost(url,null,headers).then(res=>res.json())
+        .then(data=>{
+            if(data.code>=200 && data.code<=299){
+                console.log(data.message);
             }else{
-                throw new Error(res.statusText);
+                throw new Error(data.message);
             }
-        }).then(data=>console.log(data))
-        .catch(e=>console.error(e));
+        })
+        .catch(e=>{
+            siginFailed(e.message);
+        });
     }
 })
 
+function siginFailed(message){
+    showSnackbar(message,"error-snackbar");
+}

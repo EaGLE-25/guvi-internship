@@ -180,7 +180,7 @@ label.invalid {
           box-shadow: 1px 2px 3px rgba(0, 0, 0, 0.25);
 }
 
-.signup-footer {
+.signup-footer, .signin-footer {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;

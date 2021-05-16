@@ -20,6 +20,8 @@
         $password = $emailPasswordArr[1];
 
         $userService->loginUser($email,$password);
+
+        echo json_encode(array("code"=>200,"message"=>"Signin succesfull"));
     }
     catch(UnauthorizedException $e){
         $err = $e->getError();

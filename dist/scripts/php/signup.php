@@ -26,6 +26,7 @@
             $userService->signupUser($newUser);
             $userService->saveUserAsJson($newUser);
             http_response_code(201);
+            echo json_encode(array("code"=>201,"message"=>"Account created successfully"));
         }
         catch(Exception $e) {
             $err = $e->getError();

@@ -20,24 +20,24 @@ signupForm.submit(function(e){
         const formData = createFormData(".signup-form");
         
         fetchPost(url,formData).then(res=>{
-            if(res.ok){
-                res.json();
+            if(res.status >=200 && res.status<=299){
+                return res.json();
             }else{
                 throw new Error(res.statusText);
             }
         })
         .then(data=>{
-            signupSuccess();
+            const message = data.message;
+            signupSuccess(message);
         })
-        .catch(e=>console.error(e))
+        .catch(e=>console.error(e));
     } 
 })
 
 
 
 
-function signupSuccess(){
-    const createAccountHTML = createAccountBtn.html();
+function signupSuccess(message){
     const errorIndingIcons =  document.querySelectorAll(".invalid-input-indicator i");
 
     // reset create account btn
@@ -53,5 +53,5 @@ function signupSuccess(){
     // remove error indicators
     errorIndingIcons.forEach(icon=>icon.remove());
     // show success message
-    showSnackbar();
+    showSnackbar(message,"success-snackbar");
 }
