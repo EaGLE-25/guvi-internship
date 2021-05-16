@@ -53,5 +53,10 @@ signinForm.submit(function(e){
 })
 
 function siginFailed(message){
+    signInSpan.removeClass("hide");
+    signInSpan.addClass("show");
+    signingInSpan.removeClass("show");
+    signingInSpan.addClass("hide");
+
     showSnackbar(message,"error-snackbar");
 }
