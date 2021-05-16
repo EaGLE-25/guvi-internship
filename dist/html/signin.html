@@ -15,7 +15,7 @@
 	<div class="container align-items-center">
 		<div class="row justify-content-md-center">
 			<div class="col-sm-12 col-md-10 col-lg-9">
-				<form class="signin-form">
+				<form class="signin-form" method="POST" action="../scripts/php/signin.php">
                 <header class="create-account-header">Sign In</header>
                     <div class="form-field email-container">
                         <label for="email">Email *</label>
@@ -50,5 +50,6 @@
     <script src="../scripts/js/lib/jQuery/jquery.validate.min.js"></script>
     <script src="../scripts/js/lib/jQuery/additional-methods.min.js"></script>
     <script src="../scripts/js/showPassword.js"></script>
-    <script src="../scripts/js/validations.js"></script>
+    <script src="../scripts/js/validations.js" type="module"></script>
+    <script src="../scripts/js/signin.js" type="module"></script>
 </body>

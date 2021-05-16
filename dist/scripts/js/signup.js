@@ -1,3 +1,6 @@
+import {signupValidator} from "./validations.js";
+import {fetchPost,createFormData,showSnackbar} from "./common.js";
+
 const signupForm = $(".signup-form");
 const createAccountBtn = $(".create-account");
 
@@ -8,6 +11,7 @@ const createAccSpan = $(".create-account-span");
 signupForm.submit(function(e){
     e.preventDefault();
     if(signupForm.valid()){
+        createAccSpan.removeClass("show");
         createAccSpan.addClass("hide");
         creatingAccSpan.removeClass("hide");
         creatingAccSpan.addClass("show");
@@ -30,32 +34,7 @@ signupForm.submit(function(e){
 })
 
 
-function createFormData(formClassname){
-    const inputFields = $(formClassname+" input");
-    const formData = new FormData();
-    inputFields.each(function(index,element){
-        if(element.value){
-            formData.append(element.name,element.value);
-        }
-    })
-    return formData;
-}
 
-async function fetchPost(url,data){
-    const response = await fetch(url,{
-        method:"POST",
-        mode:"same-origin",
-        body:data
-    });
-
-    return response;
-}
-
-function showSnackbar() {
-    const snackbar = document.querySelector(".signup-container .snackbar");
-    snackbar.classList.add("show");
-    setTimeout(() => snackbar.classList.remove("show"), 3000);
-}
 
 function signupSuccess(){
     const createAccountHTML = createAccountBtn.html();

@@ -95,10 +95,21 @@
         required:"Please enter a password"
       }
     },
+    success:function(label,input){  
+      const errorIndicator = $(input).siblings(".invalid-input-indicator");
+      const properInputHTML = " ";
+      errorIndicator.html(properInputHTML);
+    },
     highlight:function(element){
+      $(element).removeClass("valid");
+      $(element).addClass("invalid");
       const errorIndicator =  $(element).siblings(".invalid-input-indicator");
       const wrongInputHTML = `<i class="fas fa-times wrong-input"></i>`;
       errorIndicator.html(wrongInputHTML);
+    },
+    unhighlight:function(element){
+      $(element).removeClass("invalid");
+      $(element).addClass("valid");
     },
     errorPlacement: function(error, element) {
       $(element).closest(".form-field").append(error);  
