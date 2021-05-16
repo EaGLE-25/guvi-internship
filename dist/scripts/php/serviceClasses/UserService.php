@@ -1,9 +1,12 @@
 <?php
   namespace service;
-  require_once "../../vendor/autoload.php";
+  
+  require_once "../../../vendor/autoload.php";
 
 
-  use dao\UserDao;
+use dao\UserDao;
+use Exception;
+use exception\UnauthorizedException;
 
   class UserService{
     private $userDao;
@@ -20,9 +23,25 @@
         throw $e;
       }
     }
+
     function loginUser($email,$password){
-      
+      try{
+        $this->authenticateUser($email,$password);
+      }catch(Exception $e){
+        throw $e;
+      }
     }
+
+    function authenticateUser($email,$password){
+      $user = $this->userDao->getUserByEmail($email);
+      $passwordHash = $user['passwordHash'];
+      $passwordMatch = password_verify($password,$passwordHash);
+      
+      if(!$user || !$passwordMatch){
+        throw new UnauthorizedException("Email or password does not match",401);
+      }
+    }
+
     function saveUserAsJson($user){
       $userAssoc = array(
         "uuid"=>$user->getUuid(),

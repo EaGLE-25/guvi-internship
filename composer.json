@@ -1,0 +1,20 @@
+{
+    "name": "sai/internship",
+    "authors": [
+        {
+            "name": "sai darshan",
+            "email": "saidarshan27@gmail.com"
+        }
+    ],
+    "require": {
+        "firebase/php-jwt": "^5.2"
+    },
+    "autoload":{
+        "psr-4":{
+            "service\\":"./dist/scripts/php/serviceClasses",
+            "exception\\":"./dist/scripts/php/exception",
+            "entity\\":"./dist/scripts/php/entity",
+            "dao\\":"./dist/scripts/php/dao"
+        }
+    }
+}
