@@ -102,11 +102,13 @@ label{
 }
 
 .fas.fa-times.wrong-input{
+    position: absolute;
     color: red;
     pointer-events: none;
 }
 
 .fas.fa-check.proper-input{
+    position: absolute;
     color: green;
     pointer-events: none;
 }
@@ -127,6 +129,7 @@ label{
         display: flex;
         justify-content: center;
         align-items: center;
+        position: relative;
     }
 }
 
@@ -200,6 +203,19 @@ label{
 }
 .show{
     display: block;
+}
+.fas.fa-times.wrong-input.hide{
+   visibility: hidden;
+}
+.fas.fa-check.proper-input.hide{
+    visibility: hidden;
+}
+.fas.fa-times.wrong-input.show{
+    visibility: visible;
+}
+
+.fas.fa-check.proper-input.show{
+    visibility: visible;
 }
 
 .creating-account-span.show,.signing-in-span.show{

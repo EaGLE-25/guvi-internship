@@ -53,15 +53,21 @@
     },
     success:function(label,input){  
       const errorIndicator = $(input).siblings(".invalid-input-indicator");
-      const properInputHTML = `<i class="fas fa-check proper-input"></i>`;
-      errorIndicator.html(properInputHTML);
+      const wrongInputIcon = errorIndicator.children(".wrong-input");
+      const properInputIcon = errorIndicator.children(".proper-input");
+
+      wrongInputIcon.removeClass("show");
+      properInputIcon.addClass("show");
     },
     highlight:function(element){
       $(element).removeClass("valid");
       $(element).addClass("invalid");
       const errorIndicator =  $(element).siblings(".invalid-input-indicator");
-      const wrongInputHTML = `<i class="fas fa-times wrong-input"></i>`;
-      errorIndicator.html(wrongInputHTML);
+      const wrongInputIcon = errorIndicator.children(".wrong-input");
+      const properInputIcon = errorIndicator.children(".proper-input");
+
+      properInputIcon.removeClass("show");
+      wrongInputIcon.addClass("show");
     },
     unhighlight:function(element){
       $(element).removeClass("invalid");
@@ -97,15 +103,17 @@
     },
     success:function(label,input){  
       const errorIndicator = $(input).siblings(".invalid-input-indicator");
-      const properInputHTML = " ";
-      errorIndicator.html(properInputHTML);
+      const wrongInputIcon = errorIndicator.children(".wrong-input");
+
+      wrongInputIcon.removeClass("show");
     },
     highlight:function(element){
       $(element).removeClass("valid");
       $(element).addClass("invalid");
       const errorIndicator =  $(element).siblings(".invalid-input-indicator");
-      const wrongInputHTML = `<i class="fas fa-times wrong-input"></i>`;
-      errorIndicator.html(wrongInputHTML);
+      const wrongInputIcon = errorIndicator.children(".wrong-input");
+      
+      wrongInputIcon.addClass("show");
     },
     unhighlight:function(element){
       $(element).removeClass("invalid");

@@ -49,7 +49,7 @@
       $passwordMatch = password_verify($password,$passwordHash);
 
       if(!$user || !$passwordMatch){
-        throw new UnauthorizedException("Email or password does not match",401);
+        throw new UnauthorizedException("Wrong email or password",401);
       }
       return $user;
     }
