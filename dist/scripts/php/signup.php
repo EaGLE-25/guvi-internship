@@ -26,12 +26,14 @@
             $userService->signupUser($newUser);
             $userService->saveUserAsJson($newUser);
             http_response_code(201);
-            echo json_encode(array("code"=>201,"message"=>"Account created successfully"));
+            $response = new entity\SignupResponse(201,"Account created successfully");
+
+            echo $response->responseAsJson();
         }
         catch(Exception $e) {
             $err = $e->getError();
-            http_response_code($err['code']);
-            echo json_encode($err); 
+            http_response_code($err->code);
+            echo $err->responseAsJson();
         }
     }
 ?>

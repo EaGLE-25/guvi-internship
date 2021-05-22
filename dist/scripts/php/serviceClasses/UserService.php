@@ -13,8 +13,8 @@
   use Dotenv\Dotenv;
   use Firebase\JWT\ExpiredException;
 
-  $dotenv = Dotenv::createImmutable(__DIR__.'/../../../../');
-  $dotenv->load();
+  // $dotenv = Dotenv::createImmutable(__DIR__.'/../../../../');
+  // $dotenv->load();
 
   class UserService{
     private $userDao;
@@ -39,19 +39,19 @@
         $email = $user['email'];
 
         $accessToken = $this->getJWT($email);
-        $authorizedResponseAssoc = array("username"=>$user['email'],"accessToken"=>$accessToken);
+        $authenticatedResponseAssoc = array("email"=>$user['email'],"accessToken"=>$accessToken);
 
-        return $authorizedResponseAssoc;
+        return $authenticatedResponseAssoc;
       }catch(Exception $e){
         throw $e;
       }
     }
 
-    function getProfile($username){
-      return $this->userDao->getProfileByEmail($username);
+    function getProfile($email){
+      return $this->userDao->getProfileByEmail($email);
     }
 
-    function isAuthorized($jwt,$username){
+    function isAuthorized($jwt,$email){
       $now = new DateTimeImmutable();
       try{
         $token = JWT::decode($jwt, $_ENV['JWT_SECRET'], ['HS512']);
@@ -62,7 +62,7 @@
       catch(Exception $e){
         throw new UnauthorizedException("Please login",401);
       }
-      if ($token->nbf > $now->getTimestamp() || $token->exp < $now->getTimestamp() || $token->username !== $username){
+      if ($token->nbf > $now->getTimestamp() || $token->exp < $now->getTimestamp() || $token->email !== $email){
           throw new UnauthorizedException("Please login",401);
       }
     }
@@ -86,7 +86,7 @@
           'iat'  => $issuedAt->getTimestamp(),       
           'nbf'  => $issuedAt->getTimestamp(),         
           'exp'  => $expire,                          
-          'username' => $email,                     
+          'email' => $email,                     
       ];
 
       

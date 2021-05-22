@@ -10,21 +10,20 @@
             throw new UnauthorizedException("You need to be logged in",401);
         }
         $authHeader = $headers['Authorization'];
-        $username = $headers['X-Username'];
+        $email = $headers['X-Email'];
         $accessToken = explode(" ",$authHeader)[1];
 
-        $userService->isAuthorized($accessToken,$username);
+        $userService->isAuthorized($accessToken,$email);
 
-        $userProfile = $userService->getProfile($username);
+        $userProfile = $userService->getProfile($email);
 
-        $myprofileResponse = array("code"=>200,"profile"=>$userProfile);
-
-
-        echo(json_encode($myprofileResponse));
+        $response = new entity\MyProfileResponse(200,$userProfile);
+        
+        echo $response->responseAsJson();
     }
     catch(UnauthorizedException $e){
         $err = $e->getError();
-        http_response_code($err['code']);
-        echo json_encode($err);
+        http_response_code($err->code);
+        echo $err->responseAsJson();
     }
 ?>

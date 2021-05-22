@@ -19,21 +19,20 @@
         $email = $emailPasswordArr[0];
         $password = $emailPasswordArr[1];
 
-        $authorizedResponseAssoc = $userService->loginUser($email,$password);
-        $authorizedResponseAssoc['code'] = 200;
-        $authorizedResponseAssoc['message'] = "Signin Successfull";
+        $authenticatedResponseAssoc = $userService->loginUser($email,$password);
+        
+        $response = new entity\AuthenticatedResponse(200,$authenticatedResponseAssoc['accessToken'],$authenticatedResponseAssoc['email']);
 
-
-        echo json_encode($authorizedResponseAssoc);
+        echo $response->responseAsJson();
     }
     catch(UnauthorizedException $e){
         $err = $e->getError();
-        http_response_code($err['code']);
-        echo json_encode($err);
+        http_response_code($err->code);
+        echo $err->responseAsJson();
     }
     catch(Exception $e){
-        $err = array("code"=>$e->getCode(),"message"=>$e->getMessage());
-        http_response_code($err['code']);
-        echo json_encode($err); 
+        $err = $e->getError();
+        http_response_code($err->code);
+        echo $err->responseAsJson();
     }
 ?>

@@ -36,12 +36,12 @@ signinForm.submit(function(e){
         .then(data=>{
             if(data.code>=200 && data.code<=299){
                 const accessToken = data.accessToken;
-                const username = data.username;
+                const email= data.email;
 
                 sessionStorage.setItem("accessToken",accessToken);
-                sessionStorage.setItem("username",username);
+                sessionStorage.setItem("email",email);
 
-                window.location.pathname = "/guvi internship/dist/html/myprofile.html";
+                window.location.pathname = "/dist/html/myprofile.html";
             }else{
                 throw new Error(data.message);
             }

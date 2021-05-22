@@ -1,13 +1,14 @@
 <?php
 namespace exception;
 use Exception;
+use entity;
 
  class MobileException extends Exception{
   public function getError() {
     $code = $this->getCode();
     $message = $this->getMessage();
-    $err_arr = array("code"=>$code,"message"=>$message);
-    return $err_arr;
+    $err = new entity\ErrorResponse($code,$message);
+    return $err;
   }
  }
 ?>
