@@ -51,7 +51,6 @@
       $now = new DateTimeImmutable();
       try{
         $token = JWT::decode($jwt, $_ENV['JWT_SECRET'], ['HS512']);
-        var_dump($token);
       }
       catch(ExpiredException $e){
         throw new UnauthorizedException("Your session has expired, please login to continue",401);
