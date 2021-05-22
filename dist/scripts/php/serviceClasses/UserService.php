@@ -66,7 +66,6 @@
         echo("exp");
       }
       if($token->username !== $username){
-        echo($token->username);
         echo($username);
         echo("username");
       }
