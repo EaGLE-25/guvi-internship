@@ -41,7 +41,7 @@ signinForm.submit(function(e){
                 sessionStorage.setItem("accessToken",accessToken);
                 sessionStorage.setItem("username",username);
 
-                window.location.pathname = "/dist/html/myprofile.html";
+                window.location.pathname = "/guvi internship/dist/html/myprofile.html";
             }else{
                 throw new Error(data.message);
             }

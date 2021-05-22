@@ -66,5 +66,21 @@
                 throw new DatabaseException($e->getMessage(),500);
             }
         }
+
+        function getProfileByEmail($email){
+            try{
+                $sql = 'SELECT uuid,name,email,dob,mobile FROM `users` WHERE email=:email';
+                $stmt = $this->pdo->prepare($sql);
+    
+                $stmt->bindParam(":email",$email);
+                $stmt->execute();
+                $user = $stmt->fetch(PDO::FETCH_ASSOC);
+    
+                return $user;
+            }
+            catch(Exception $e){
+                throw new DatabaseException($e->getMessage(),500);
+            }
+        }
     }
 ?>

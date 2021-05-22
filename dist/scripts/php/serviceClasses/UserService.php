@@ -13,8 +13,8 @@
   use Dotenv\Dotenv;
   use Firebase\JWT\ExpiredException;
 
-  // $dotenv = Dotenv::createImmutable(__DIR__.'/../../../../');
-  // $dotenv->load();
+  $dotenv = Dotenv::createImmutable(__DIR__.'/../../../../');
+  $dotenv->load();
 
   class UserService{
     private $userDao;
@@ -45,6 +45,10 @@
       }catch(Exception $e){
         throw $e;
       }
+    }
+
+    function getProfile($username){
+      return $this->userDao->getProfileByEmail($username);
     }
 
     function isAuthorized($jwt,$username){

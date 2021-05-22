@@ -14,6 +14,13 @@
         $accessToken = explode(" ",$authHeader)[1];
 
         $userService->isAuthorized($accessToken,$username);
+
+        $userProfile = $userService->getProfile($username);
+
+        $myprofileResponse = array("code"=>200,"profile"=>$userProfile);
+
+
+        echo(json_encode($myprofileResponse));
     }
     catch(UnauthorizedException $e){
         $err = $e->getError();
