@@ -57,6 +57,7 @@ function showError(){
 
     if(err){
         showSnackbar(err,"error-snackbar");
+        sessionStorage.removeItem("error");
     }
 }
 
