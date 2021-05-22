@@ -97,7 +97,9 @@
       );
       return $accessToken;
     }
+
     function saveUserAsJson($user){
+      $userUuid = $user->getUuid();
       $userAssoc = array(
         "uuid"=>$user->getUuid(),
         "name"=>$user->getName(),
@@ -109,9 +111,10 @@
 
       $path = "../../storage/users.json";
       $fileContents = file_get_contents($path);
-      $usersArr = json_decode($fileContents);
+      $usersArr = json_decode($fileContents,true);
       
-      array_push($usersArr,$userAssoc);
+      $usersArr[$userUuid] = $userAssoc;
+
       $jsonUsersArr = json_encode($usersArr);
 
       file_put_contents($path,$jsonUsersArr);
