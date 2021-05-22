@@ -5,7 +5,7 @@ window.onload = (event) => {
         "Authorization":`Bearer ${sessionStorage.getItem("accessToken")}`,
         "username":`${sessionStorage.getItem("username")}`
     }
-    fetchGet("/guvi internship/dist/scripts/php/myprofile.php",headers).then(res=>{
+    fetchGet("/dist/scripts/php/myprofile.php",headers).then(res=>{
         return res.json();
     }).then(data=>{
         if(data.code>=200 && data.code<=299){
