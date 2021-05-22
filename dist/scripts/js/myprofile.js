@@ -12,7 +12,7 @@ window.onload = (event) => {
             console.log(data);
         }else{
             sessionStorage.setItem("error",data.message);
-            window.location.replace("/guvi internship/dist/html/signin.html");
+            window.location.replace("/dist/html/signin.html");
         }
     })
     .catch(e=>console.error(e));

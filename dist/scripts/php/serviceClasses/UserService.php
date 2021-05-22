@@ -13,7 +13,7 @@
   use Dotenv\Dotenv;
   use Firebase\JWT\ExpiredException;
 
-  $dotenv = Dotenv::createImmutable(__DIR__);
+  $dotenv = Dotenv::createImmutable(__DIR__.'/../../../../');
   $dotenv->load();
 
   class UserService{
