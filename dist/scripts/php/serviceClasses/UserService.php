@@ -50,7 +50,8 @@
     function isAuthorized($jwt,$username){
       $now = new DateTimeImmutable();
       try{
-        $token = JWT::decode($jwt, $_ENV['JWT_SECRET'], ['HS512']);;
+        $token = JWT::decode($jwt, $_ENV['JWT_SECRET'], ['HS512']);
+        echo($token);
       }
       catch(ExpiredException $e){
         throw new UnauthorizedException("Your session has expired, please login to continue",401);
