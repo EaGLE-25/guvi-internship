@@ -56,10 +56,10 @@
         throw new UnauthorizedException("Your session has expired, please login to continue",401);
       }
       catch(Exception $e){
-        throw new UnauthorizedException("Please login",401);
+        throw new UnauthorizedException($e->getMessage(),401);
       }
       if ($token->nbf > $now->getTimestamp() || $token->exp < $now->getTimestamp() || $token->username !== $username){
-          throw new UnauthorizedException("Please login",401);
+          throw new UnauthorizedException($e->getMessage(),401);
       }
     }
 
