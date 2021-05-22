@@ -11,7 +11,7 @@
         }
         var_dump($headers);
         $authHeader = $headers['Authorization'];
-        $username = $headers['username'];
+        $username = $headers['X-Username'];
         $accessToken = explode(" ",$authHeader)[1];
 
         $userService->isAuthorized($accessToken,$username);
