@@ -9,7 +9,6 @@
         if(!isset($headers['Authorization'])){
             throw new UnauthorizedException("You need to be logged in",401);
         }
-        var_dump($headers);
         $authHeader = $headers['Authorization'];
         $username = $headers['X-Username'];
         $accessToken = explode(" ",$authHeader)[1];
