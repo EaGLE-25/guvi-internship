@@ -6,6 +6,7 @@ const signinForm = $(".signin-form");
 const signingInSpan = $(".signing-in-span");
 const signInSpan = $(".sign-in-span");
 
+window.onload = showError;
 
 signinForm.submit(function(e){
     e.preventDefault();
@@ -40,7 +41,6 @@ signinForm.submit(function(e){
                 sessionStorage.setItem("accessToken",accessToken);
                 sessionStorage.setItem("username",username);
 
-                const path = window.location.pathname;
                 window.location.pathname = "/dist/html/myprofile.html";
             }else{
                 throw new Error(data.message);
@@ -51,6 +51,15 @@ signinForm.submit(function(e){
         });
     }
 })
+
+function showError(){
+    const err = sessionStorage.getItem("error");
+
+    if(err){
+        showSnackbar(err,"error-snackbar");
+        sessionStorage.removeItem("error");
+    }
+}
 
 function siginFailed(message){
     signInSpan.removeClass("hide");

@@ -10,6 +10,11 @@
   use exception\UnauthorizedException;
   use Firebase\JWT\JWT;
   use DateTimeImmutable;
+  use Dotenv\Dotenv;
+  use Firebase\JWT\ExpiredException;
+
+  $dotenv = Dotenv::createImmutable(__DIR__);
+  $dotenv->load();
 
   class UserService{
     private $userDao;
@@ -32,14 +37,29 @@
         $user = $this->authenticateUser($email,$password);
 
         $email = $user['email'];
-        $passwordHash = $user['passwordHash'];
 
-        $accessToken = $this->getJWT($email,$passwordHash);
+        $accessToken = $this->getJWT($email);
         $authorizedResponseAssoc = array("username"=>$user['email'],"accessToken"=>$accessToken);
 
         return $authorizedResponseAssoc;
       }catch(Exception $e){
         throw $e;
+      }
+    }
+
+    function isAuthorized($jwt,$username){
+      $now = new DateTimeImmutable();
+      try{
+        $token = JWT::decode($jwt, $_ENV['JWT_SECRET'], ['HS512']);;
+      }
+      catch(ExpiredException $e){
+        throw new UnauthorizedException("Your session has expired, please login to continue",401);
+      }
+      catch(Exception $e){
+        throw new UnauthorizedException("Please login",401);
+      }
+      if ($token->nbf > $now->getTimestamp() || $token->exp < $now->getTimestamp() || $token->username !== $username){
+          throw new UnauthorizedException("Please login",401);
       }
     }
 
@@ -54,7 +74,7 @@
       return $user;
     }
 
-    private function getJWT($email,$secret){
+    private function getJWT($email){
       $issuedAt = new DateTimeImmutable();
         $expire = $issuedAt->modify('+6 minutes')->getTimestamp();
 
@@ -68,7 +88,7 @@
       
       $accessToken = JWT::encode(
         $payload,
-        $secret,
+        $_ENV['JWT_SECRET'],
         'HS512'
       );
       return $accessToken;

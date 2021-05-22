@@ -20,6 +20,16 @@ export async function fetchPost(url,data,headers={}){
     return response;
 }
 
+export async function fetchGet(url,headers={}){
+    const response = await fetch(url,{
+        method:"GET",
+        mode:"same-origin",
+        headers:headers
+    });
+
+    return response;
+}
+
 export function showSnackbar(message,indicatorClass) {
     const snackbar = document.querySelector(".snackbar");
     const snackbarMessageContainer = document.querySelector(".snackbar > div");
