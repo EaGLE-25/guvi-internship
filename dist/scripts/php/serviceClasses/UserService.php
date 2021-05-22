@@ -59,16 +59,6 @@
       catch(Exception $e){
         throw new UnauthorizedException($e->getMessage(),401);
       }
-      if($token->nbf > $now->getTimestamp()){
-        echo("nbf");
-      }
-      if($token->exp < $now->getTimestamp()){
-        echo("exp");
-      }
-      if($token->username !== $username){
-        echo($username);
-        echo("username");
-      }
       if ($token->nbf > $now->getTimestamp() || $token->exp < $now->getTimestamp() || $token->username !== $username){
           throw new UnauthorizedException("Please login",401);
       }
