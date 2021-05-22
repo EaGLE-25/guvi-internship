@@ -3,7 +3,7 @@ import {fetchGet} from "./common.js";
 window.onload = (event) => {
     const headers = {
         "Authorization":`Bearer ${sessionStorage.getItem("accessToken")}`,
-        "username":`${sessionStorage.getItem("username")}`
+        "username":`${sessionStorage.getItem("username").trim()}`
     }
     fetchGet("/dist/scripts/php/myprofile.php",headers).then(res=>{
         return res.json();

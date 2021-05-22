@@ -36,7 +36,7 @@ signinForm.submit(function(e){
         .then(data=>{
             if(data.code>=200 && data.code<=299){
                 const accessToken = data.accessToken;
-                const username = data.username;
+                const username = data.username.trim();
 
                 sessionStorage.setItem("accessToken",accessToken);
                 sessionStorage.setItem("username",username);

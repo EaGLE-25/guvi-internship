@@ -66,6 +66,8 @@
         echo("exp");
       }
       if($token->username !== $username){
+        echo($token->username);
+        echo($username);
         echo("username");
       }
       if ($token->nbf > $now->getTimestamp() || $token->exp < $now->getTimestamp() || $token->username !== $username){
