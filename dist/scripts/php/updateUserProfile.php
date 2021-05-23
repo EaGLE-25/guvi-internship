@@ -17,14 +17,14 @@
         $credentials = $userService->getCredentials($headers);
         $userService->isAuthorized($credentials[0],$credentials[1]);
      
-         if(isset($_POST['name']) && isset($_POST['email']) && isset($_POST['mob'])){
+         if(isset($_POST['name']) && isset($_POST['email']) && isset($_POST['mobile'])){
              $updatedUser = new User();
              $validationService = new UserUpdateValidationService();
              
              $name = $_POST['name'];
              $email = $_POST['email'];
              $dob = isset($_POST['dob'])?$_POST['dob'] : NULL;
-             $mobile = $_POST['mob'];
+             $mobile = $_POST['mobile'];
              
              $updatedUser->setName($name);
              $updatedUser->setEmail($email);

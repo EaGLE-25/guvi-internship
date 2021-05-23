@@ -84,6 +84,14 @@ label{
         transition: all .5s ease;
     }
 
+    &.btn-secondary{
+        background-color:transparent;
+        @include primaryFontStyle();
+        color: $primaryColor;
+        text-align: center;
+        border: 2px solid $primaryColor;
+    }
+
     &.btn-danger{
         background-color: red;
         color: white;
@@ -95,7 +103,7 @@ label{
     &.btn-primary:hover{
         background-color: #7354b6;
     }
-    &.btn-primary:focus{
+    &.btn-primary:focus,&.btn-secondary:focus{
         box-shadow: 0 0 0 0.25rem rgba(137, 103, 209, 0.493);
     }
 
@@ -261,9 +269,14 @@ label{
     animation: fadeOut 1s;
     animation-fill-mode: forwards;
 }
-.edit-btn,.logout-btn{
+.edit-btn,.logout-btn,.update-btn,.cancel-btn{
     margin-bottom: .5rem;
 }
+
+.update-and-cancel.show,.edit-and-logout.show{
+    display: flex;
+}
+
 
 @keyframes fadeOut{
     100% {
