@@ -4,7 +4,7 @@
     use entity;
 
     require_once "../../../vendor/autoload.php";
-    class DataBaseException extends Exception{
+    class DatabaseException extends Exception{
         public function getError() {
             $code = $this->getCode();
             $message = $this->getMessage();
