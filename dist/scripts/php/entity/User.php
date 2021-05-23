@@ -3,7 +3,6 @@
     require_once "../../../vendor/autoload.php";
 
     use service\ValidationService;
-    use exception\MobileException,exception\NameException,exception\EmailException;
     
 
 class User{
