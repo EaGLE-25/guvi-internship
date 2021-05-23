@@ -56,10 +56,6 @@ input {
   width: 100%;
 }
 
-.invalid {
-  border: 1px solid red;
-}
-
 label.invalid {
   border: none;
   margin-bottom: 0;
@@ -95,6 +91,7 @@ label.invalid {
   border: none;
   outline: none;
   cursor: pointer;
+  min-width: 200px;
 }
 
 .btn.btn-primary {
@@ -131,11 +128,13 @@ label.invalid {
 }
 
 .fas.fa-times.wrong-input {
+  position: absolute;
   color: red;
   pointer-events: none;
 }
 
 .fas.fa-check.proper-input {
+  position: absolute;
   color: green;
   pointer-events: none;
 }
@@ -176,6 +175,7 @@ label.invalid {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  position: relative;
 }
 
 .inputfield-group:focus-within {
@@ -183,7 +183,7 @@ label.invalid {
           box-shadow: 1px 2px 3px rgba(0, 0, 0, 0.25);
 }
 
-.signup-footer {
+.signup-footer, .signin-footer {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -198,5 +198,129 @@ label.invalid {
       -ms-flex-align: stretch;
           align-items: stretch;
   margin-top: 2rem;
+}
+
+.home-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  height: 100vh;
+}
+
+.home-container .jumbo {
+  font-family: 'Work Sans', sans-serif;
+  font-size: 5rem;
+  margin-bottom: 2rem;
+}
+
+.link-btn {
+  display: inline-block;
+  text-decoration: none;
+}
+
+.snackbar {
+  position: fixed;
+  bottom: 10px;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
+  opacity: 0;
+  pointer-events: none;
+  -webkit-transition: bottom 0.5s, opacity 0.5s;
+  transition: bottom 0.5s, opacity 0.5s;
+}
+
+.snackbar > div {
+  background-color: #333;
+  color: white;
+  min-width: 150px;
+  padding: 15px;
+  font-size: 1rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  border-radius: 5px;
+}
+
+.snackbar.error-snackbar > div {
+  background-color: red;
+}
+
+.snackbar.success-snackbar > div {
+  background-color: green;
+}
+
+.snackbar.show {
+  bottom: 30px;
+  opacity: 1;
+  pointer-events: all;
+}
+
+.hide {
+  display: none;
+}
+
+.show {
+  display: block;
+}
+
+.fas.fa-times.wrong-input.hide {
+  visibility: hidden;
+}
+
+.fas.fa-check.proper-input.hide {
+  visibility: hidden;
+}
+
+.fas.fa-times.wrong-input.show {
+  visibility: visible;
+}
+
+.fas.fa-check.proper-input.show {
+  visibility: visible;
+}
+
+.creating-account-span.show, .signing-in-span.show {
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.creating-account-span.hide, .signing-in-span.hide {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  html {
+    font-size: 95%;
+  }
+}
+
+@media (max-width: 568px) {
+  html {
+    font-size: 90%;
+  }
 }
 /*# sourceMappingURL=style.css.map */

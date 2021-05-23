@@ -54,10 +54,6 @@ label{
         background-color: #F4F4F4;
         width: 100%;
     }
-
-    .invalid{
-        border: 1px solid red;
-    }
     label.invalid{
         border: none;
         margin-bottom: 0;
@@ -78,6 +74,7 @@ label{
     border:none;
     outline: none;
     cursor: pointer;
+    min-width: 200px;
 
     &.btn-primary{
         background-color: $primaryColor;
@@ -105,11 +102,13 @@ label{
 }
 
 .fas.fa-times.wrong-input{
+    position: absolute;
     color: red;
     pointer-events: none;
 }
 
 .fas.fa-check.proper-input{
+    position: absolute;
     color: green;
     pointer-events: none;
 }
@@ -130,6 +129,7 @@ label{
         display: flex;
         justify-content: center;
         align-items: center;
+        position: relative;
     }
 }
 
@@ -137,7 +137,104 @@ label{
     box-shadow: 1px 2px 3px rgba(0, 0, 0, 0.25);
  }
 
- .signup-footer{
+ .signup-footer,.signin-footer{
      @include flex(row,center);
      margin-top: 2rem;
  }
+
+ .home-container{
+     @include flex(column,center,center);
+     height: 100vh;
+
+     .jumbo{
+        font-family: 'Work Sans', sans-serif;
+        font-size: 5rem;
+        margin-bottom: 2rem;
+     }
+ }
+ .link-btn{
+     display: inline-block;
+     text-decoration: none;
+ }
+
+ .snackbar{
+    position: fixed;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+  
+    opacity: 0;
+    pointer-events: none;
+  
+    transition: bottom 0.5s, opacity 0.5s;
+  }
+
+  
+  .snackbar > div{
+    background-color: #333;
+    color: white;
+  
+    min-width: 150px;
+    padding: 15px;
+    font-size: 1rem;
+  
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  
+    border-radius: 5px;
+  }
+  .snackbar.error-snackbar > div{
+      background-color: red;
+  }
+  .snackbar.success-snackbar > div{
+      background-color: green;
+  }
+  
+  .snackbar.show {
+    bottom: 30px;
+    opacity: 1;
+  
+    pointer-events: all;
+  }
+
+.hide{
+    display: none;
+}
+.show{
+    display: block;
+}
+.fas.fa-times.wrong-input.hide{
+   visibility: hidden;
+}
+.fas.fa-check.proper-input.hide{
+    visibility: hidden;
+}
+.fas.fa-times.wrong-input.show{
+    visibility: visible;
+}
+
+.fas.fa-check.proper-input.show{
+    visibility: visible;
+}
+
+.creating-account-span.show,.signing-in-span.show{
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+}
+.creating-account-span.hide,.signing-in-span.hide{
+    display: none;
+}
+
+@media (max-width:768px){
+    html{
+        font-size: 95%;
+    }
+}
+
+@media(max-width:568px){
+    html{
+        font-size: 90%;
+    }
+}

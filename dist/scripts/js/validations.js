@@ -1,5 +1,4 @@
-$(function(){
-    $.validator.addMethod("strongPassword",function(value,element){
+ $.validator.addMethod("strongPassword",function(value,element){
       return this.optional(element)
       || value.length >=6
       && /\d/.test(value)
@@ -7,11 +6,12 @@ $(function(){
   },"Your password must be atleast 6 characters long and contain atleast one number and one character");
 
   $.validator.addMethod("mobile",function(value,element){
-      return this.optional(element)
-      || value.length == 10;
+    return this.optional(element)
+    || value.length == 10
+    && /^\d*$/.test(value);
   },"Please enter a valid mobile number")
 
-  $(".signup-form").validate({
+  let signupValidator = $(".signup-form").validate({
     errorClass:"invalid",
     validClass:"valid",
     rules:{
@@ -21,7 +21,17 @@ $(function(){
         },
         email:{
           required:true,
-          email:true
+          email:true,
+          remote:{
+            url:"/dist/scripts/php/isEmailAvailable.php",
+            type: "get",
+            data:{
+              email:function(){
+                return $("#email").val();
+              },
+              for:"signup"
+            }
+          }
         },
         password:{
           required:true,
@@ -39,7 +49,8 @@ $(function(){
       },
       email:{
         required:"Please enter your email",
-        email:"Please enter a valid email"
+        email:"Please enter a valid email",
+        remote:"This email is already associated with a account.Would like to <a href='/dist/html/signin.html'>login</a>"
       },
       password:{
         required:"Please enter a password"
@@ -51,13 +62,25 @@ $(function(){
     },
     success:function(label,input){  
       const errorIndicator = $(input).siblings(".invalid-input-indicator");
-      const properInputHTML = `<i class="fas fa-check proper-input"></i>`;
-      errorIndicator.html(properInputHTML);
+      const wrongInputIcon = errorIndicator.children(".wrong-input");
+      const properInputIcon = errorIndicator.children(".proper-input");
+
+      wrongInputIcon.removeClass("show");
+      properInputIcon.addClass("show");
     },
     highlight:function(element){
+      $(element).removeClass("valid");
+      $(element).addClass("invalid");
       const errorIndicator =  $(element).siblings(".invalid-input-indicator");
-      const wrongInputHTML = `<i class="fas fa-times wrong-input"></i>`;
-      errorIndicator.html(wrongInputHTML);
+      const wrongInputIcon = errorIndicator.children(".wrong-input");
+      const properInputIcon = errorIndicator.children(".proper-input");
+
+      properInputIcon.removeClass("show");
+      wrongInputIcon.addClass("show");
+    },
+    unhighlight:function(element){
+      $(element).removeClass("invalid");
+      $(element).addClass("valid");
     },
     errorPlacement: function(error, element) {
       $(element).closest(".form-field").append(error);  
@@ -66,7 +89,7 @@ $(function(){
   });
 	
 	
-	$(".signin-form").validate({
+	let signinValidator = $(".signin-form").validate({
     errorClass:"invalid",
     validClass:"valid",
     rules:{
@@ -89,17 +112,26 @@ $(function(){
     },
     success:function(label,input){  
       const errorIndicator = $(input).siblings(".invalid-input-indicator");
-      const properInputHTML = `<i class="fas fa-check proper-input"></i>`;
-      errorIndicator.html(properInputHTML);
+      const wrongInputIcon = errorIndicator.children(".wrong-input");
+
+      wrongInputIcon.removeClass("show");
     },
     highlight:function(element){
+      $(element).removeClass("valid");
+      $(element).addClass("invalid");
       const errorIndicator =  $(element).siblings(".invalid-input-indicator");
-      const wrongInputHTML = `<i class="fas fa-times wrong-input"></i>`;
-      errorIndicator.html(wrongInputHTML);
+      const wrongInputIcon = errorIndicator.children(".wrong-input");
+      
+      wrongInputIcon.addClass("show");
+    },
+    unhighlight:function(element){
+      $(element).removeClass("invalid");
+      $(element).addClass("valid");
     },
     errorPlacement: function(error, element) {
       $(element).closest(".form-field").append(error);  
     },
     focusInvalid:false
   })
-})
+
+  export {signupValidator};
