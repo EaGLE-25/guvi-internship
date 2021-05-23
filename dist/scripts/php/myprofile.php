@@ -1,9 +1,9 @@
 <?php
     require_once "../../../vendor/autoload.php";
-    
+
     use service\UserService;
     use exception\UnauthorizedException;
-    use entity\MyProfileResponse;
+    use entity\UserProfileResponse;
     $userService = new UserService();
     
     $headers = getallheaders();
@@ -20,7 +20,7 @@
 
         $userProfile = $userService->getProfile($email);
 
-        $response = new MyProfileResponse(200,$userProfile);
+        $response = new UserProfileResponse(200,$userProfile);
         
         echo $response->responseAsJson();
     }

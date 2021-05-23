@@ -2,7 +2,7 @@
 namespace entity;
 require_once "../../../vendor/autoload.php";
 
-class MyProfileResponse extends Response{
+class UserProfileResponse extends Response{
     var $userProfile;
 
     function __construct($code,$userProfile,$message=""){
