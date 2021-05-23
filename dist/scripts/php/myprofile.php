@@ -9,9 +9,10 @@
         if(!isset($headers['Authorization'])){
             throw new UnauthorizedException("You need to be logged in",401);
         }
-        $authHeader = $headers['Authorization'];
-        $email = $headers['X-Email'];
-        $accessToken = explode(" ",$authHeader)[1];
+        $credentials = $userService->getCredentials($headers);
+
+        $accessToken = $credentials[0];
+        $email = $credentials[1];
 
         $userService->isAuthorized($accessToken,$email);
 

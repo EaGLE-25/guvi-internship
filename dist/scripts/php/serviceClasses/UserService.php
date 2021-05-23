@@ -21,6 +21,7 @@
 
     function __construct() {
       $this->userDao = new UserDao();
+      $this->validationService = new ValidationService();
     }  
 
     function signupUser($user){
@@ -63,7 +64,24 @@
         throw new UnauthorizedException("Please login",401);
       }
       if ($token->nbf > $now->getTimestamp() || $token->exp < $now->getTimestamp() || $token->email !== $email){
-          throw new UnauthorizedException("Please login",401);
+          throw new UnauthorizedException("Please login email",401);
+      }
+    }
+
+    function getCredentials($headers){
+      $authHeader = $headers['Authorization'];
+      $email = $headers['X-Email'];
+      $accessToken = explode(" ",$authHeader)[1];
+
+      return array($accessToken,$email);
+    }
+
+    function updateUser($user){
+      try{
+        $this->userDao->updateUser($user);
+      }
+      catch(Exception $e){
+        throw $e;
       }
     }
 

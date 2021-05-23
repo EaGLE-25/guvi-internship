@@ -51,6 +51,31 @@
             }
         }
 
+        function updateUser($user){
+            try{
+                $sql ="UPDATE users SET name=:name,email=:email,dob=:dob,mobile=:mob WHERE email=:whereemail";
+                $stmt = $this->pdo->prepare($sql);
+                
+                $name = $user->getName();
+                $email = $user->getEmail();
+                $dob = $user->getDob();
+                $mob = $user->getMobile();
+
+
+    
+                $stmt->bindParam(":name", $name);
+                $stmt->bindParam(":email",$email);
+                $stmt->bindParam(":dob",$dob);
+                $stmt->bindParam(":mob",$mob);
+                $stmt->bindParam(":whereemail",$email);
+    
+                $stmt->execute();
+            }
+            catch(Exception $e){
+                throw new DatabaseException($e->getMessage(),500);
+            }
+        }
+
         function getUserByEmail($email){
             try{
                 $sql = 'SELECT * FROM `users` WHERE email=:email';

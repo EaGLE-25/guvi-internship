@@ -12,7 +12,8 @@
         }
 
         function responseAsJson(){
-            $resArr = array("code"=>$this->code,"message"=>$this->message,"userProfile"=>$this->userProfile);
+            $resArr = array("code"=>$this->code,"message"=>$this->message,
+            "userProfile"=>$this->userProfile);
             return json_encode($resArr);
         }
     }

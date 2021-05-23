@@ -22,7 +22,16 @@
         email:{
           required:true,
           email:true,
-          remote:'/dist/scripts/php/isEmailAvailable.php'
+          remote:{
+            url:"/dist/scripts/php/isEmailAvailable.php",
+            type: "get",
+            data:{
+              email:function(){
+                return $("#email").val();
+              },
+              for:"signup"
+            }
+          }
         },
         password:{
           required:true,
