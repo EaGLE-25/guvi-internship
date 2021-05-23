@@ -51,35 +51,35 @@ editBtn.click(function(e){
         fillInputFields(beforeEditInputFieldValues);
         goBackFromEditMode();
     })
-})
 
-updateBtn.click(function(e){
-    e.preventDefault();
-    const updatedUserProfile = createFormData(".myProfile-form");
-
-    console.log(updatedUserProfile);
-
-    const headers = {
-        "Authorization":`Bearer ${sessionStorage.getItem("accessToken")}`,
-        "X-Email":`${sessionStorage.getItem("email")}`
-    }
-
-    fetchPost("/dist/scripts/php/updateUserProfile.php",updatedUserProfile,headers).then(res=>{
-        return res.json();
-    })
-    .then(data=>{
-        if(data.code>=200 && data.code<=299){
-            showSnackbar(data.message,"success-snackbar");
-            goBackFromEditMode();
-        }else{
-            throw new Error(data.message);
+    updateBtn.click(function(e){
+        e.preventDefault();
+        const updatedUserProfile = createFormData(".myProfile-form");
+    
+        console.log(updatedUserProfile);
+    
+        const headers = {
+            "Authorization":`Bearer ${sessionStorage.getItem("accessToken")}`,
+            "X-Email":`${sessionStorage.getItem("email")}`
         }
+    
+        fetchPost("/dist/scripts/php/updateUserProfile.php",updatedUserProfile,headers).then(res=>{
+            return res.json();
+        })
+        .then(data=>{
+            if(data.code>=200 && data.code<=299){
+                showSnackbar(data.message,"success-snackbar");
+                goBackFromEditMode();
+            }else{
+                throw new Error(data.message);
+            }
+        })
+        .catch(e=>{
+            showSnackbar(e,"error-snackbar");
+            goBackFromEditMode();
+            fillInputFields(beforeEditInputFieldValues);
+        })
     })
-    .catch(e=>{
-        showSnackbar(e,"error-snackbar");
-        goBackFromEditMode();
-    })
-
 })
 
 function fillInputFields(userProfile){
