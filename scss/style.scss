@@ -261,6 +261,9 @@ label{
     animation: fadeOut 1s;
     animation-fill-mode: forwards;
 }
+.edit-btn,.logout-btn{
+    margin-bottom: .5rem;
+}
 
 @keyframes fadeOut{
     100% {

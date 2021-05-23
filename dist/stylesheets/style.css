@@ -367,6 +367,10 @@ label.invalid {
           animation-fill-mode: forwards;
 }
 
+.edit-btn, .logout-btn {
+  margin-bottom: .5rem;
+}
+
 @-webkit-keyframes fadeOut {
   100% {
     opacity: 0;
