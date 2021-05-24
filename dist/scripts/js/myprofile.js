@@ -55,41 +55,43 @@ editBtn.click(function(e){
 
     updateBtn.click(function(e){
         e.preventDefault();
-        const updatedUserProfile = createFormData(".myProfile-form");
-    
-        console.log(updatedUserProfile);
-    
-        const headers = {
-            "Authorization":`Bearer ${sessionStorage.getItem("accessToken")}`,
-            "X-Uuid":`${sessionStorage.getItem("uuid")}`
-        }
-    
-        fetchPost("/dist/scripts/php/updateUserProfile.php",updatedUserProfile,headers).then(res=>{
-            return res.json();
-        })
-        .then(data=>{
-            if(data.code>=200 && data.code<=299){
-                const errorIndingIcons =  document.querySelectorAll(".invalid-input-indicator i");
+        if($(".myProfile-form").valid()){
+            const updatedUserProfile = createFormData(".myProfile-form");
+        
+            console.log(updatedUserProfile);
+        
+            const headers = {
+                "Authorization":`Bearer ${sessionStorage.getItem("accessToken")}`,
+                "X-Uuid":`${sessionStorage.getItem("uuid")}`
+            }
+        
+            fetchPost("/dist/scripts/php/updateUserProfile.php",updatedUserProfile,headers).then(res=>{
+                return res.json();
+            })
+            .then(data=>{
+                if(data.code>=200 && data.code<=299){
+                    const errorIndingIcons =  document.querySelectorAll(".invalid-input-indicator i");
 
-                showSnackbar(data.message,"success-snackbar");
-                goBackFromEditMode();
+                    showSnackbar(data.message,"success-snackbar");
+                    goBackFromEditMode();
+                    // remove error indicators
+                    errorIndingIcons.forEach(icon=>icon.remove());
+                    myProfileValidator.resetForm();
+                }else{
+                    throw new Error(data.message);
+                }
+            })
+            .catch(e=>{
                 // remove error indicators
                 errorIndingIcons.forEach(icon=>icon.remove());
                 myProfileValidator.resetForm();
-            }else{
-                throw new Error(data.message);
-            }
-        })
-        .catch(e=>{
-            // remove error indicators
-            errorIndingIcons.forEach(icon=>icon.remove());
-            myProfileValidator.resetForm();
-            showSnackbar(e.message,"error-snackbar");
-            goBackFromEditMode();
-            fillInputFields(beforeEditInputFieldValues);
-        })
+                showSnackbar(e.message,"error-snackbar");
+                goBackFromEditMode();
+                fillInputFields(beforeEditInputFieldValues);
+            })
+        }
     })
-})
+});
 
 function fillInputFields(userProfile){
     inputFields.each(function(index,element){
