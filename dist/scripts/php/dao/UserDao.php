@@ -53,9 +53,10 @@
 
         function updateUser($user){
             try{
-                $sql ="UPDATE users SET name=:name,email=:email,dob=:dob,mobile=:mob WHERE email=:whereemail";
+                $sql ="UPDATE users SET name=:name,email=:email,dob=:dob,mobile=:mob WHERE uuid=:uuid";
                 $stmt = $this->pdo->prepare($sql);
                 
+                $uuid = $user->getUuid();
                 $name = $user->getName();
                 $email = $user->getEmail();
                 $dob = $user->getDob();
@@ -67,7 +68,7 @@
                 $stmt->bindParam(":email",$email);
                 $stmt->bindParam(":dob",$dob);
                 $stmt->bindParam(":mob",$mob);
-                $stmt->bindParam(":whereemail",$email);
+                $stmt->bindParam(":uuid",$uuid);
     
                 $stmt->execute();
             }
@@ -91,6 +92,21 @@
                 throw new DatabaseException($e->getMessage(),500);
             }
         }
+        function getUserByUuid($uuid){
+            try{
+                $sql = 'SELECT * FROM `users` WHERE uuid=:uuid';
+                $stmt = $this->pdo->prepare($sql);
+    
+                $stmt->bindParam(":uuid",$uuid);
+                $stmt->execute();
+                $user = $stmt->fetch(PDO::FETCH_ASSOC);
+    
+                return $user;
+            }
+            catch(Exception $e){
+                throw new DatabaseException($e->getMessage(),500);
+            }
+        }
 
         function getProfileByEmail($email){
             try{
@@ -98,6 +114,22 @@
                 $stmt = $this->pdo->prepare($sql);
     
                 $stmt->bindParam(":email",$email);
+                $stmt->execute();
+                $user = $stmt->fetch(PDO::FETCH_ASSOC);
+    
+                return $user;
+            }
+            catch(Exception $e){
+                throw new DatabaseException($e->getMessage(),500);
+            }
+        }
+
+        function getProfileByUuid($uuid){
+            try{
+                $sql = 'SELECT uuid,name,email,dob,mobile FROM `users` WHERE uuid=:uuid';
+                $stmt = $this->pdo->prepare($sql);
+    
+                $stmt->bindParam(":uuid",$uuid);
                 $stmt->execute();
                 $user = $stmt->fetch(PDO::FETCH_ASSOC);
     

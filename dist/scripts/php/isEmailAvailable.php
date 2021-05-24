@@ -1,5 +1,6 @@
 <?php
     use service\ValidationService;
+    use service\UserUpdateValidationService;
     require_once "../../../vendor/autoload.php";
 
     $email = $_GET['email'];
@@ -9,10 +10,9 @@
     if($for == "signup"){
         $validationService = new ValidationService();
     }else if($for == "update"){
-        $validationService = new service\UserUpdateValidationService();
+        $validationService = new UserUpdateValidationService();
     }
 
-    $validationService = new ValidationService();
     $emailTaken = $validationService->emailTaken($email);
     if($emailTaken == true){
         echo json_encode(FALSE);

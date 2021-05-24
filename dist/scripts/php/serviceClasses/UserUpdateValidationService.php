@@ -9,12 +9,13 @@ use dao\UserDao;
 class UserUpdateValidationService extends ValidationService{
     function emailTaken($email){
         $headers = getallheaders();
-        $loggedEmail = $headers['X-Email'];
+        $loggedUuid = $headers['X-Uuid'];
 
         $userDao = new UserDao();
-        $user = $userDao->getUserByEmail($email);
-            
-        if($user && $loggedEmail !== $user['email']){
+        $saidToBeUser = $userDao->getUserByEmail($email);
+        $loggedInUser = $userDao->getUserByUuid($loggedUuid);
+
+        if($saidToBeUser && $loggedInUser['email'] !== $saidToBeUser['email']){
             return TRUE;
         }else{
             return FALSE;

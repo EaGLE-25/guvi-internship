@@ -36,10 +36,10 @@ signinForm.submit(function(e){
         .then(data=>{
             if(data.code>=200 && data.code<=299){
                 const accessToken = data.accessToken;
-                const email= data.email;
+                const uuid= data.uuid;
 
                 sessionStorage.setItem("accessToken",accessToken);
-                sessionStorage.setItem("email",email);
+                sessionStorage.setItem("uuid",uuid);
 
                 window.location.pathname = "/dist/html/myprofile.html";
             }else{

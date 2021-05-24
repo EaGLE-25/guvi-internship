@@ -21,7 +21,7 @@
 
         $authenticatedResponseAssoc = $userService->loginUser($email,$password);
         
-        $response = new entity\AuthenticatedResponse(200,$authenticatedResponseAssoc['accessToken'],$authenticatedResponseAssoc['email']);
+        $response = new entity\AuthenticatedResponse(200,$authenticatedResponseAssoc['accessToken'],$authenticatedResponseAssoc['uuid']);
 
         echo $response->responseAsJson();
     }

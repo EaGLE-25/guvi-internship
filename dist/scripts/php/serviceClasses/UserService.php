@@ -37,10 +37,10 @@
       try{
         $user = $this->authenticateUser($email,$password);
 
-        $email = $user['email'];
+        $uuid = $user['uuid'];
 
-        $accessToken = $this->getJWT($email);
-        $authenticatedResponseAssoc = array("email"=>$user['email'],"accessToken"=>$accessToken);
+        $accessToken = $this->getJWT($uuid);
+        $authenticatedResponseAssoc = array("uuid"=>$user['uuid'],"accessToken"=>$accessToken);
 
         return $authenticatedResponseAssoc;
       }catch(Exception $e){
@@ -48,11 +48,11 @@
       }
     }
 
-    function getProfile($email){
-      return $this->userDao->getProfileByEmail($email);
+    function getProfile($uuid){
+      return $this->userDao->getProfileByUuid($uuid);
     }
 
-    function isAuthorized($jwt,$email){
+    function isAuthorized($jwt,$uuid){
       $now = new DateTimeImmutable();
       try{
         $token = JWT::decode($jwt, $_ENV['JWT_SECRET'], ['HS512']);
@@ -63,17 +63,17 @@
       catch(Exception $e){
         throw new UnauthorizedException("Please login",401);
       }
-      if ($token->nbf > $now->getTimestamp() || $token->exp < $now->getTimestamp() || $token->email !== $email){
-          throw new UnauthorizedException("Please login email",401);
+      if ($token->nbf > $now->getTimestamp() || $token->exp < $now->getTimestamp() || $token->uuid !== $uuid){
+          throw new UnauthorizedException("Please login uuid",401);
       }
     }
 
     function getCredentials($headers){
       $authHeader = $headers['Authorization'];
-      $email = $headers['X-Email'];
+      $uuid = $headers['X-Uuid'];
       $accessToken = explode(" ",$authHeader)[1];
 
-      return array($accessToken,$email);
+      return array($accessToken,$uuid);
     }
 
     function updateUser($user){
@@ -96,7 +96,7 @@
       return $user;
     }
 
-    private function getJWT($email){
+    private function getJWT($uuid){
       $issuedAt = new DateTimeImmutable();
         $expire = $issuedAt->modify('+6 minutes')->getTimestamp();
 
@@ -104,7 +104,7 @@
           'iat'  => $issuedAt->getTimestamp(),       
           'nbf'  => $issuedAt->getTimestamp(),         
           'exp'  => $expire,                          
-          'email' => $email,                     
+          'uuid' => $uuid,                     
       ];
 
       

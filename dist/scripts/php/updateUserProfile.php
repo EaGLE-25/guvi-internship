@@ -21,11 +21,13 @@
              $updatedUser = new User();
              $validationService = new UserUpdateValidationService();
              
+             $uuid = $_POST['uuid'];
              $name = $_POST['name'];
              $email = $_POST['email'];
              $dob = isset($_POST['dob'])?$_POST['dob'] : NULL;
              $mobile = $_POST['mobile'];
              
+             $updatedUser->setUuid($uuid);
              $updatedUser->setName($name);
              $updatedUser->setEmail($email);
              $updatedUser->setDob($dob);

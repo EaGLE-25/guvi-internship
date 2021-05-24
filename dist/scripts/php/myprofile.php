@@ -14,11 +14,11 @@
         $credentials = $userService->getCredentials($headers);
 
         $accessToken = $credentials[0];
-        $email = $credentials[1];
+        $uuid = $credentials[1];
 
-        $userService->isAuthorized($accessToken,$email);
+        $userService->isAuthorized($accessToken,$uuid);
 
-        $userProfile = $userService->getProfile($email);
+        $userProfile = $userService->getProfile($uuid);
 
         $response = new UserProfileResponse(200,$userProfile);
         

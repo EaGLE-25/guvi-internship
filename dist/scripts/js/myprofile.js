@@ -1,4 +1,5 @@
 import {fetchGet,fetchPost,showSnackbar,createFormData} from "./common.js";
+import {myProfileValidator} from "./validations.js";
 
 const logoutBtn = $(".logout-btn");
 const editBtn = $(".edit-btn");
@@ -16,7 +17,7 @@ const inputFields = $(".myProfile-form input");
 window.onload = (event) => {
     const headers = {
         "Authorization":`Bearer ${sessionStorage.getItem("accessToken")}`,
-        "X-Email":`${sessionStorage.getItem("email")}`
+        "X-Uuid":`${sessionStorage.getItem("uuid")}`
     }
     fetchGet("/dist/scripts/php/myprofile.php",headers).then(res=>{
         return res.json();
@@ -60,7 +61,7 @@ editBtn.click(function(e){
     
         const headers = {
             "Authorization":`Bearer ${sessionStorage.getItem("accessToken")}`,
-            "X-Email":`${sessionStorage.getItem("email")}`
+            "X-Uuid":`${sessionStorage.getItem("uuid")}`
         }
     
         fetchPost("/dist/scripts/php/updateUserProfile.php",updatedUserProfile,headers).then(res=>{
@@ -68,14 +69,19 @@ editBtn.click(function(e){
         })
         .then(data=>{
             if(data.code>=200 && data.code<=299){
+                const errorIndingIcons =  document.querySelectorAll(".invalid-input-indicator i");
+
                 showSnackbar(data.message,"success-snackbar");
                 goBackFromEditMode();
+                // remove error indicators
+                errorIndingIcons.forEach(icon=>icon.remove());
+                myProfileValidator.resetForm();
             }else{
                 throw new Error(data.message);
             }
         })
         .catch(e=>{
-            showSnackbar(e,"error-snackbar");
+            showSnackbar(e.message,"error-snackbar");
             goBackFromEditMode();
             fillInputFields(beforeEditInputFieldValues);
         })

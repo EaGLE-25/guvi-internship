@@ -134,4 +134,77 @@
     focusInvalid:false
   })
 
-  export {signupValidator};
+  let myProfileValidator = $(".myProfile-form").validate({
+    errorClass:"invalid",
+    validClass:"valid",
+    rules:{
+        name:{
+          required:true,
+          lettersonly:true
+        },
+        email:{
+          required:true,
+          email:true,
+          remote:{
+            url:"/dist/scripts/php/isEmailAvailable.php",
+            type: "get",
+            data:{
+              email:function(){
+                return $("#email").val();
+              },
+              for:"update"
+            },
+            beforeSend: function(request) {
+              request.setRequestHeader("X-Uuid", sessionStorage.getItem("uuid"));
+            }
+          }
+        },
+        mobile:{
+          required:true,
+          mobile:true,
+          digits:true
+        }
+    },
+    messages:{
+      name:{
+        required:"Please enter your name",
+      },
+      email:{
+        required:"Please enter your email",
+        email:"Please enter a valid email",
+        remote:"This email is already associated with a account"
+      },
+      mobile:{
+        required:"Please enter your mobile number",
+        digits:"Digits only please"
+      }
+    },
+    success:function(label,input){  
+      const errorIndicator = $(input).siblings(".invalid-input-indicator");
+      const wrongInputIcon = errorIndicator.children(".wrong-input");
+      const properInputIcon = errorIndicator.children(".proper-input");
+
+      wrongInputIcon.removeClass("show");
+      properInputIcon.addClass("show");
+    },
+    highlight:function(element){
+      $(element).removeClass("valid");
+      $(element).addClass("invalid");
+      const errorIndicator =  $(element).siblings(".invalid-input-indicator");
+      const wrongInputIcon = errorIndicator.children(".wrong-input");
+      const properInputIcon = errorIndicator.children(".proper-input");
+
+      properInputIcon.removeClass("show");
+      wrongInputIcon.addClass("show");
+    },
+    unhighlight:function(element){
+      $(element).removeClass("invalid");
+      $(element).addClass("valid");
+    },
+    errorPlacement: function(error, element) {
+      $(element).closest(".form-field").append(error);  
+    },
+    focusInvalid:false
+  });
+
+  export {signupValidator,myProfileValidator};

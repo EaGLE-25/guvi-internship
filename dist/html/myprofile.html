@@ -10,12 +10,6 @@
     <link rel="stylesheet" href="../stylesheets/style.css">
     <script src="https://kit.fontawesome.com/d9b010d1ce.js" crossorigin="anonymous"></script>
     <title>My Profile</title>
-    <!-- scripts -->
-    <script src="../scripts/js/lib/jQuery/jquery-3.6.0.min.js"></script>
-    <script src="../scripts/js/lib/jQuery/jquery.validate.min.js""></script>
-    <script src="../scripts/js/lib/jQuery/additional-methods.min.js"></script>
-    <script src="../scripts/js/common.js" type="module"></script>
-    <script src="../scripts/js/myprofile.js" type="module"></script>
 </head>
 <body>
     <div class="loader">
@@ -34,6 +28,7 @@
            <div class="col-sm-12 col-md-10 col-lg-9">
             <form class="myProfile-form mt-5" method="POST" action="../scripts/php/signup.php">
                 <header class="create-account-header">My Profile</header>
+                <input type="hidden" name="uuid">
                 <div class="form-field name-container">
                     <label for="name">Name</label>
                     <div class="inputfield-group">
@@ -95,5 +90,12 @@
            </div>
         </div>
     </div>
+
+        <!-- scripts -->
+        <script src="../scripts/js/lib/jQuery/jquery-3.6.0.min.js"></script>
+        <script src="../scripts/js/lib/jQuery/jquery.validate.min.js""></script>
+        <script src="../scripts/js/lib/jQuery/additional-methods.min.js"></script>
+        <script src="../scripts/js/validations.js" type="module"></script>
+        <script src="../scripts/js/myprofile.js" type="module"></script>
 </body>
 </html>

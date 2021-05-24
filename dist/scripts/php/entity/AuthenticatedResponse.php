@@ -4,17 +4,17 @@
 
     class AuthenticatedResponse extends Response{
         var $accessToken;
-        var $email;
+        var $uuid;
 
-        function __construct($code,$accessToken,$email,$message=""){
+        function __construct($code,$accessToken,$uuid,$message=""){
             $this->code = $code;
             $this->message = $message;
             $this->accessToken = $accessToken;
-            $this->email = $email;
+            $this->uuid = $uuid;
         }
 
         function responseAsJson(){
-            return json_encode(array("code"=>$this->code,"message"=>$this->message,"accessToken"=>$this->accessToken,"email"=>$this->email));
+            return json_encode(array("code"=>$this->code,"message"=>$this->message,"accessToken"=>$this->accessToken,"uuid"=>$this->uuid));
         }
     }
 ?>
