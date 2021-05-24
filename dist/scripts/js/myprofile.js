@@ -10,6 +10,7 @@ const editLogoutContainer = $(".edit-and-logout");
 const updateCancelContainer = $(".update-and-cancel");
 
 const inputFields = $(".myProfile-form input");
+const errorIndingIcons =  document.querySelectorAll(".invalid-input-indicator i");
 
 
 
@@ -70,8 +71,6 @@ editBtn.click(function(e){
             })
             .then(data=>{
                 if(data.code>=200 && data.code<=299){
-                    const errorIndingIcons =  document.querySelectorAll(".invalid-input-indicator i");
-
                     showSnackbar(data.message,"success-snackbar");
                     goBackFromEditMode();
                     // remove error indicators

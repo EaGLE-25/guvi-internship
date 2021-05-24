@@ -1,5 +1,7 @@
 <?php
-    use service\ValidationService;
+
+use exception\EmailException;
+use service\ValidationService;
     use service\UserUpdateValidationService;
     require_once "../../../vendor/autoload.php";
 
@@ -12,11 +14,19 @@
     }else if($for == "update"){
         $validationService = new UserUpdateValidationService();
     }
+    try{
+        $validationService->validateEmail($email);
 
-    $emailTaken = $validationService->emailTaken($email);
-    if($emailTaken == true){
-        echo json_encode(FALSE);
-    }else{
-        echo json_encode(TRUE);
+        $emailTaken = $validationService->emailTaken($email);
+        if($emailTaken == true){
+            echo json_encode(FALSE);
+        }else{
+            echo json_encode(TRUE);
+        }
     }
+    catch(EmailException $e){
+        $response = new entity\ErrorResponse(400,"Invalid Email");
+        echo $response->responseAsJson();
+    }
+
 ?>
