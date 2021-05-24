@@ -11,6 +11,8 @@ const createAccSpan = $(".create-account-span");
 signupForm.submit(function(e){
     e.preventDefault();
     if(signupForm.valid()){
+        createAccountBtn.attr("disabled","true");
+
         createAccSpan.removeClass("show");
         createAccSpan.addClass("hide");
         creatingAccSpan.removeClass("hide");
@@ -40,6 +42,7 @@ signupForm.submit(function(e){
 function signupSuccess(message){
     const errorIndingIcons =  document.querySelectorAll(".invalid-input-indicator i");
 
+    createAccountBtn.removeAttr("disabled","true");
     // reset create account btn
     createAccSpan.removeClass("hide");
     createAccSpan.addClass("show");

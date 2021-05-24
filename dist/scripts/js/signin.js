@@ -1,6 +1,7 @@
 import {fetchPost,createFormData, showSnackbar} from "./common.js";
 
 const signinForm = $(".signin-form");
+const signinBtn = $(".signin-btn");
 
 
 const signingInSpan = $(".signing-in-span");
@@ -11,6 +12,8 @@ window.onload = showError;
 signinForm.submit(function(e){
     e.preventDefault();
     if(signinForm.valid()){
+        signinBtn.attr("disabled","true");
+
         signInSpan.removeClass("show");
         signInSpan.addClass("hide");
         signingInSpan.removeClass("hide");
@@ -35,6 +38,7 @@ signinForm.submit(function(e){
         fetchPost(url,null,headers).then(res=>res.json())
         .then(data=>{
             if(data.code>=200 && data.code<=299){
+                signinBtn.removeAttr("disabled");
                 const accessToken = data.accessToken;
                 const uuid= data.uuid;
 
@@ -62,6 +66,7 @@ function showError(){
 }
 
 function siginFailed(message){
+    signinBtn.removeAttr("disabled");
     signInSpan.removeClass("hide");
     signInSpan.addClass("show");
     signingInSpan.removeClass("show");

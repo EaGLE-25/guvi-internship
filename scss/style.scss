@@ -2,6 +2,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap');
 
 $primaryColor : #8967D1;
+$inputDisabled:#f4f4f4;
+$inputBackground:#fdfdfd;
+$primaryDisabled:#8967d1d3;
 
 @mixin primaryFontStyle{
     font-family: Montserrat;
@@ -51,8 +54,11 @@ label{
         font-size: .8rem;
         border: none;
         outline: none;
-        background-color: #F4F4F4;
+        background-color: inherit;
         width: 100%;
+    }
+    input:disabled{
+        background-color: $inputDisabled;
     }
     label.invalid{
         border: none;
@@ -82,6 +88,9 @@ label{
         @include primaryFontStyle();
         text-align: center;
         transition: all .5s ease;
+    }
+    &.btn-primary:disabled{
+        background-color: $primaryDisabled;
     }
 
     &.btn-secondary{
@@ -140,13 +149,15 @@ label{
     @include flex();
     border: 1px solid #E5E5E5;
     max-height: 52px;
+    background-color: $inputBackground;
     transition: all .3s ease;
+    
 
     .inputfield-group-btn{
         padding: 1rem;
         text-align: center;
         outline: none;
-        background-color: #F4F4F4;
+        background-color: inherit;
         border:none;
         border-left: none;
         display: flex;
@@ -154,6 +165,10 @@ label{
         align-items: center;
         position: relative;
     }
+}
+
+.inputfield-group:disabled{
+    background-color: $inputDisabled;
 }
 
 .inputfield-group:focus-within{
@@ -241,7 +256,7 @@ label{
     visibility: visible;
 }
 
-.creating-account-span.show,.signing-in-span.show{
+.creating-account-span.show,.signing-in-span.show,.updating-acc-span.show{
     display: inline-flex;
     justify-content: center;
     align-items: center;

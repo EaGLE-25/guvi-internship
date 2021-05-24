@@ -52,8 +52,12 @@ input {
   font-size: .8rem;
   border: none;
   outline: none;
-  background-color: #F4F4F4;
+  background-color: inherit;
   width: 100%;
+}
+
+input:disabled {
+  background-color: #f4f4f4;
 }
 
 label.invalid {
@@ -107,6 +111,10 @@ label.invalid {
   text-align: center;
   -webkit-transition: all .5s ease;
   transition: all .5s ease;
+}
+
+.btn.btn-primary:disabled {
+  background-color: #8967d1d3;
 }
 
 .btn.btn-secondary {
@@ -193,6 +201,7 @@ label.invalid {
           align-items: stretch;
   border: 1px solid #E5E5E5;
   max-height: 52px;
+  background-color: #fdfdfd;
   -webkit-transition: all .3s ease;
   transition: all .3s ease;
 }
@@ -201,7 +210,7 @@ label.invalid {
   padding: 1rem;
   text-align: center;
   outline: none;
-  background-color: #F4F4F4;
+  background-color: inherit;
   border: none;
   border-left: none;
   display: -webkit-box;
@@ -214,6 +223,10 @@ label.invalid {
       -ms-flex-align: center;
           align-items: center;
   position: relative;
+}
+
+.inputfield-group:disabled {
+  background-color: #f4f4f4;
 }
 
 .inputfield-group:focus-within {
@@ -334,7 +347,7 @@ label.invalid {
   visibility: visible;
 }
 
-.creating-account-span.show, .signing-in-span.show {
+.creating-account-span.show, .signing-in-span.show, .updating-acc-span.show {
   display: -webkit-inline-box;
   display: -ms-inline-flexbox;
   display: inline-flex;

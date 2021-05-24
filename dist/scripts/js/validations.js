@@ -179,23 +179,9 @@
         digits:"Digits only please"
       }
     },
-    success:function(label,input){  
-      const errorIndicator = $(input).siblings(".invalid-input-indicator");
-      const wrongInputIcon = errorIndicator.children(".wrong-input");
-      const properInputIcon = errorIndicator.children(".proper-input");
-
-      wrongInputIcon.removeClass("show");
-      properInputIcon.addClass("show");
-    },
     highlight:function(element){
       $(element).removeClass("valid");
       $(element).addClass("invalid");
-      const errorIndicator =  $(element).siblings(".invalid-input-indicator");
-      const wrongInputIcon = errorIndicator.children(".wrong-input");
-      const properInputIcon = errorIndicator.children(".proper-input");
-
-      properInputIcon.removeClass("show");
-      wrongInputIcon.addClass("show");
     },
     unhighlight:function(element){
       $(element).removeClass("invalid");

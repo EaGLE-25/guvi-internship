@@ -4,6 +4,8 @@ import {myProfileValidator} from "./validations.js";
 const logoutBtn = $(".logout-btn");
 const editBtn = $(".edit-btn");
 const updateBtn = $(".update-btn");
+const updateAccSpan = $(".update-acc-span");
+const updatingAccSpan = $(".updating-acc-span");
 const editCancelBtn = $(".cancel-btn");
 
 const editLogoutContainer = $(".edit-and-logout");
@@ -56,6 +58,14 @@ editBtn.click(function(e){
 
     updateBtn.click(function(e){
         e.preventDefault();
+
+        $(this).attr("disabled","true");
+
+        updateAccSpan.removeClass("show");
+        updateAccSpan.addClass("hide");
+        updatingAccSpan.removeClass("hide");
+        updatingAccSpan.addClass("show");
+
         if($(".myProfile-form").valid()){
             const updatedUserProfile = createFormData(".myProfile-form");
         
@@ -71,6 +81,13 @@ editBtn.click(function(e){
             })
             .then(data=>{
                 if(data.code>=200 && data.code<=299){
+                    $(this).removeAttr("disabled");
+
+                    updateAccSpan.removeClass("hide");
+                    updateAccSpan.addClass("show");
+                    updatingAccSpan.removeClass("show");
+                    updatingAccSpan.addClass("hide");
+
                     showSnackbar(data.message,"success-snackbar");
                     goBackFromEditMode();
                     // remove error indicators
@@ -81,8 +98,13 @@ editBtn.click(function(e){
                 }
             })
             .catch(e=>{
-                // remove error indicators
-                errorIndingIcons.forEach(icon=>icon.remove());
+                $(this).removeAttr("disabled");
+
+                updateAccSpan.removeClass("hide");
+                updateAccSpan.addClass("show");
+                updatingAccSpan.removeClass("show");
+                updatingAccSpan.addClass("hide");
+                
                 myProfileValidator.resetForm();
                 showSnackbar(e.message,"error-snackbar");
                 goBackFromEditMode();
