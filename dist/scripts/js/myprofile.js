@@ -81,6 +81,9 @@ editBtn.click(function(e){
             }
         })
         .catch(e=>{
+            // remove error indicators
+            errorIndingIcons.forEach(icon=>icon.remove());
+            myProfileValidator.resetForm();
             showSnackbar(e.message,"error-snackbar");
             goBackFromEditMode();
             fillInputFields(beforeEditInputFieldValues);
