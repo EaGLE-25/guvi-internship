@@ -1,24 +1,16 @@
-import {fetchPost,createFormData, showSnackbar} from "./common.js";
+import {fetchPost,createFormData, showSnackbar,basePath,Operation} from "./common.js";
 
 const signinForm = $(".signin-form");
-const signinBtn = $(".signin-btn");
 
+const signin = signinOperation();
 
-const signingInSpan = $(".signing-in-span");
-const signInSpan = $(".sign-in-span");
 
 window.onload = showError;
 
 signinForm.submit(function(e){
     e.preventDefault();
     if(signinForm.valid()){
-        signinBtn.attr("disabled","true");
-
-        signInSpan.removeClass("show");
-        signInSpan.addClass("hide");
-        signingInSpan.removeClass("hide");
-        signingInSpan.addClass("show");
-
+        signin.start();
 
         const emailField = $(".signin-form #email")[0];
         const passwordField = $(".signin-form #password")[0];
@@ -38,20 +30,21 @@ signinForm.submit(function(e){
         fetchPost(url,null,headers).then(res=>res.json())
         .then(data=>{
             if(data.code>=200 && data.code<=299){
-                signinBtn.removeAttr("disabled");
+                signin.end();
                 const accessToken = data.accessToken;
                 const uuid= data.uuid;
 
                 sessionStorage.setItem("accessToken",accessToken);
                 sessionStorage.setItem("uuid",uuid);
 
-                window.location.pathname = "/dist/html/myprofile.html";
+                window.location.pathname = `${basePath}/html/myprofile.html`;
             }else{
                 throw new Error(data.message);
             }
         })
         .catch(e=>{
-            siginFailed(e.message);
+            signin.end();
+            showSnackbar(e.message,"error-snackbar");
         });
     }
 })
@@ -65,12 +58,9 @@ function showError(){
     }
 }
 
-function siginFailed(message){
-    signinBtn.removeAttr("disabled");
-    signInSpan.removeClass("hide");
-    signInSpan.addClass("show");
-    signingInSpan.removeClass("show");
-    signingInSpan.addClass("hide");
+function signinOperation(){
+    const signinBtn = $(".signin-btn");
+    const operation = new Operation(signinBtn,"Signingin","signing-in-span");
 
-    showSnackbar(message,"error-snackbar");
+    return operation;
 }

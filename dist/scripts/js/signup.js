@@ -1,22 +1,16 @@
 import {signupValidator} from "./validations.js";
-import {fetchPost,createFormData,showSnackbar} from "./common.js";
+import {fetchPost,createFormData,showSnackbar,basePath,Operation} from "./common.js";
 
 const signupForm = $(".signup-form");
-const createAccountBtn = $(".create-account");
 
-const creatingAccSpan = $(".creating-account-span");
-const createAccSpan = $(".create-account-span");
+let createAcc = createAccOperation();
 
 
 signupForm.submit(function(e){
     e.preventDefault();
     if(signupForm.valid()){
-        createAccountBtn.attr("disabled","true");
-
-        createAccSpan.removeClass("show");
-        createAccSpan.addClass("hide");
-        creatingAccSpan.removeClass("hide");
-        creatingAccSpan.addClass("show");
+        
+        createAcc.start();
 
         const url = $(this).attr("action");
         const formData = createFormData(".signup-form");
@@ -32,7 +26,10 @@ signupForm.submit(function(e){
             const message = data.message;
             signupSuccess(message);
         })
-        .catch(e=>console.error(e));
+        .catch(e=>{
+            showSnackbar(e.message,"error-snackbar");
+            createAcc.end();
+        });
     } 
 })
 
@@ -42,13 +39,7 @@ signupForm.submit(function(e){
 function signupSuccess(message){
     const errorIndingIcons =  document.querySelectorAll(".invalid-input-indicator i");
 
-    createAccountBtn.removeAttr("disabled","true");
-    // reset create account btn
-    createAccSpan.removeClass("hide");
-    createAccSpan.addClass("show");
-    creatingAccSpan.addClass("hide");
-    createAccountBtn.blur();
-    
+    createAcc.end();
     // reset the validators
     signupValidator.resetForm();
     // reset all the input fields
@@ -57,4 +48,11 @@ function signupSuccess(message){
     errorIndingIcons.forEach(icon=>icon.remove());
     // show success message
     showSnackbar(message,"success-snackbar");
+}
+
+ function createAccOperation(){
+    const createAccountBtn = $(".create-account");
+    const operation = new Operation(createAccountBtn,"Creating","creating-account-span");
+
+    return operation;
 }

@@ -347,7 +347,7 @@ label.invalid {
   visibility: visible;
 }
 
-.creating-account-span.show, .signing-in-span.show, .updating-acc-span.show {
+.creating-account-span, .signing-in-span, .updating-acc-span {
   display: -webkit-inline-box;
   display: -ms-inline-flexbox;
   display: inline-flex;
@@ -359,8 +359,8 @@ label.invalid {
           align-items: center;
 }
 
-.creating-account-span.hide, .signing-in-span.hide {
-  display: none;
+.loading-img-svg {
+  margin-left: .2rem;
 }
 
 .loader {

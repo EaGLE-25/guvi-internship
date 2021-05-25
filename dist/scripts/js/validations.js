@@ -1,3 +1,5 @@
+ import {basePath} from "./common.js";
+
  $.validator.addMethod("strongPassword",function(value,element){
       return this.optional(element)
       || value.length >=6
@@ -23,7 +25,7 @@
           required:true,
           email:true,
           remote:{
-            url:"/dist/scripts/php/isEmailAvailable.php",
+            url:`${basePath}/scripts/php/isEmailAvailable.php`,
             type: "get",
             data:{
               email:function(){
@@ -146,7 +148,7 @@
           required:true,
           email:true,
           remote:{
-            url:"/dist/scripts/php/isEmailAvailable.php",
+            url:`${basePath}/scripts/php/isEmailAvailable.php`,
             type: "get",
             data:{
               email:function(){
