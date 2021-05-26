@@ -5,10 +5,20 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Welcome</title>
-  <link rel="stylesheet" href="/dist/stylesheets/style.css">
+
+  <link rel="stylesheet" href="./dist/stylesheets/lib/bootstrap-5.0.0-beta3-dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="./dist/stylesheets/style.css">
+  <!-- font awesome script -->
+  <script src="https://kit.fontawesome.com/d9b010d1ce.js" crossorigin="anonymous"></script>
 </head>
-<body>
-    <div class="home-container">
+<body class="d-flex flex-column">
+  <nav class="navbar">
+    <a href="/" class="logo">
+        <i class="fab fa-autoprefixer" style="font-size: 19px;"></i>
+        <span class="logo-text">Auth</span>
+    </a>
+  </nav>
+    <div class="container d-flex flex-column mt-5 justify-content-center align-items-center">
       <h1 class="jumbo">WELCOME</h1>
       <div class="home-button-container">
         <a href="dist/html/signup.html" class="btn btn-primary link-btn">Sign Up</a>

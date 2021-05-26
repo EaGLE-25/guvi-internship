@@ -43,53 +43,18 @@ body {
   -webkit-box-align: stretch;
       -ms-flex-align: stretch;
           align-items: stretch;
+  text-align: center;
+  color: white;
+  text-decoration: none;
+}
+
+.logo:hover {
+  color: white;
 }
 
 .logo-text {
   font-family: 'Work Sans', sans-serif;
   font-weight: 400;
-}
-
-.home-container {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  max-width: 500px;
-  margin: 0 auto;
-  height: 100vh;
-}
-
-.home-container .jumbo {
-  font-family: 'Work Sans', sans-serif;
-  font-size: 3rem;
-  margin-bottom: 2rem;
-}
-
-.home-button-container {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: row;
-          flex-direction: row;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  width: 100%;
 }
 
 .create-account-header {
