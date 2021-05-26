@@ -22,7 +22,7 @@ $primaryDisabled:#8967d1d3;
     justify-content: $justifyContent;
     align-items: $alignItems;
 }
-
+// default styles
 *{
     padding: 0;
     margin: 0;
@@ -34,115 +34,74 @@ body{
     font-family: 'Montserrat', sans-serif;
 }
 
+// home-page styles
+.home-container{
+    @include flex(column,center,center);
+    max-width: 500px;
+    margin: 0 auto;
+    height: 100vh;
+
+    .jumbo{
+       font-family: 'Work Sans', sans-serif;
+       font-size: 3rem;
+       margin-bottom: 2rem;
+    }
+}
+
+.home-button-container{
+    @include flex(row,space-between,center);
+    width: 100%;
+}
+
+// signup styles
 .create-account-header{
     font-family: 'Work Sans', sans-serif;
     margin-bottom: 3rem;
     font-size: .9rem;
 }
+
+.signup-footer,.signin-footer{
+    @include flex(row,center);
+    margin-top: 2rem;
+}
+// form styles
 .form-field{
     @include flex(column);
     margin-bottom: 3rem;
 }
 
-label{
-        margin-bottom: 1rem;
-        color: #7B7B7B;
-        @include primaryFontStyle();     
-    }
-    input{
-        padding: 1rem;
-        font-size: .8rem;
-        border: none;
-        outline: none;
-        background-color: inherit;
-        width: 100%;
-    }
-    input:disabled{
-        background-color: $inputDisabled;
-    }
-    label.invalid{
-        border: none;
-        margin-bottom: 0;
-        margin-top: .4rem;
-        color: red;
-        font-size: 0.625rem;
-    }
 .form-field-container{
     @include flex(row,space-between);
 }
 .form-field-container .form-field{
     width: 49%;
 }
-.btn{
-    text-align: center;
-    padding: 1rem;
-    font-weight: 600;
-    border:none;
-    outline: none;
-    cursor: pointer;
-    min-width: 200px;
 
-    &.btn-primary{
-        background-color: $primaryColor;
-        color: white;
-        @include primaryFontStyle();
-        text-align: center;
-        transition: all .5s ease;
-    }
-    &.btn-primary:disabled{
-        background-color: $primaryDisabled;
-    }
-
-    &.btn-secondary{
-        background-color:transparent;
-        @include primaryFontStyle();
-        color: $primaryColor;
-        text-align: center;
-        border: 2px solid $primaryColor;
-    }
-
-    &.btn-danger{
-        background-color: red;
-        color: white;
-        @include primaryFontStyle();
-        text-align: center;
-        transition: all .5s ease;
-    }
-
-    &.btn-primary:hover{
-        background-color: #7354b6;
-    }
-    &.btn-primary:focus,&.btn-secondary:focus{
-        box-shadow: 0 0 0 0.25rem rgba(137, 103, 209, 0.493);
-    }
-
-    &.btn-danger:hover{
-        background-color: rgb(228, 1, 1);
-    }
-    &.btn-danger:focus{
-        box-shadow: 0 0 0 0.25rem rgba(228, 1, 1, 0.418);
-    }
+// label styles
+label{
+    margin-bottom: 1rem;
+    color: #7B7B7B;
+    @include primaryFontStyle();     
 }
 
-.wide-btn{
+label.invalid{
+    border: none;
+    margin-bottom: 0;
+    margin-top: .4rem;
+    color: red;
+    font-size: 0.625rem;
+}
+// input styles
+input{
+    padding: 1rem;
+    font-size: .8rem;
+    border: none;
+    outline: none;
+    background-color: inherit;
     width: 100%;
 }
-
-.fa-eye-slash:before,.fa-eye::before{
-    color:#969696;
-    cursor: pointer;
-}
-
-.fas.fa-times.wrong-input{
-    position: absolute;
-    color: red;
-    pointer-events: none;
-}
-
-.fas.fa-check.proper-input{
-    position: absolute;
-    color: green;
-    pointer-events: none;
+input:disabled{
+    background-color: $inputDisabled;
 }
 
 .inputfield-group{
@@ -167,34 +126,106 @@ label{
     }
 }
 
-.inputfield-group:disabled{
-    background-color: $inputDisabled;
-}
-
 .inputfield-group:focus-within{
     box-shadow: 1px 2px 3px rgba(0, 0, 0, 0.25);
  }
 
- .signup-footer,.signin-footer{
-     @include flex(row,center);
-     margin-top: 2rem;
+// button styles
+.btn{
+    text-align: center;
+    padding: 1rem;
+    font-weight: 600;
+    border:none;
+    outline: none;
+    cursor: pointer;
+    min-width: 200px;
+
+    &.btn-primary{
+        background-color: $primaryColor;
+        color: white;
+        @include primaryFontStyle();
+        text-align: center;
+        transition: all .5s ease;
+    }
+    &.btn-primary:hover{
+        background-color: #7354b6;
+    }
+    &.btn-primary:disabled{
+        background-color: $primaryDisabled;
+    }
+
+    &.btn-secondary{
+        background-color:transparent;
+        @include primaryFontStyle();
+        color: $primaryColor;
+        text-align: center;
+        border: 2px solid $primaryColor;
+    }
+
+    &.btn-danger{
+        background-color: red;
+        color: white;
+        @include primaryFontStyle();
+        text-align: center;
+        transition: all .5s ease;
+    }
+
+    &.btn-danger:hover{
+        background-color: rgb(228, 1, 1);
+    }
+    &.btn-danger:focus{
+        box-shadow: 0 0 0 0.25rem rgba(228, 1, 1, 0.418);
+    }
+
+    &.btn-primary:focus,&.btn-secondary:focus{
+        box-shadow: 0 0 0 0.25rem rgba(137, 103, 209, 0.493);
+    }
+}
+
+.wide-btn{
+    width: 100%;
+}
+
+// icon styles
+
+.fa-eye-slash:before,.fa-eye::before{
+    color:#969696;
+    cursor: pointer;
+}
+
+.fas.fa-times.wrong-input{
+    position: absolute;
+    color: red;
+    pointer-events: none;
+}
+
+.fas.fa-check.proper-input{
+    position: absolute;
+    color: green;
+    pointer-events: none;
+}
+
+.fas.fa-times.wrong-input.hide{
+    visibility: hidden;
+ }
+ .fas.fa-check.proper-input.hide{
+     visibility: hidden;
+ }
+ .fas.fa-times.wrong-input.show{
+     visibility: visible;
+ }
+ 
+ .fas.fa-check.proper-input.show{
+     visibility: visible;
  }
 
- .home-container{
-     @include flex(column,center,center);
-     height: 100vh;
-
-     .jumbo{
-        font-family: 'Work Sans', sans-serif;
-        font-size: 5rem;
-        margin-bottom: 2rem;
-     }
- }
+// <a> styles
  .link-btn{
      display: inline-block;
      text-decoration: none;
  }
 
+//  snackbar styles
  .snackbar{
     position: fixed;
     bottom: 10px;
@@ -216,10 +247,8 @@ label{
     padding: 15px;
     font-size: 1rem;
   
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  
+    @include flex(row,center,center);
+
     border-radius: 5px;
   }
   .snackbar.error-snackbar > div{
@@ -236,26 +265,15 @@ label{
     pointer-events: all;
   }
 
+//   util styles
 .hide{
     display: none;
 }
 .show{
     display: block;
 }
-.fas.fa-times.wrong-input.hide{
-   visibility: hidden;
-}
-.fas.fa-check.proper-input.hide{
-    visibility: hidden;
-}
-.fas.fa-times.wrong-input.show{
-    visibility: visible;
-}
 
-.fas.fa-check.proper-input.show{
-    visibility: visible;
-}
-
+// loading styles
 .creating-account-span,.signing-in-span,.updating-acc-span{
     display: inline-flex;
     justify-content: center;
@@ -277,19 +295,21 @@ label{
     z-index: 99;
 }
 .loading-span{
-    display: flex;
+    @include flex();
 }
 
 .loader.hidden{
     animation: fadeOut 1s;
     animation-fill-mode: forwards;
 }
+
+// my profile styles
 .edit-btn,.logout-btn,.update-btn,.cancel-btn{
     margin-bottom: .5rem;
 }
 
 .update-and-cancel.show,.edit-and-logout.show{
-    display: flex;
+    @include flex();
 }
 
 
@@ -300,6 +320,7 @@ label{
     }
 }
 
+// media queries
 @media (max-width:768px){
     html{
         font-size: 95%;
@@ -309,5 +330,14 @@ label{
 @media(max-width:568px){
     html{
         font-size: 90%;
+    }
+}
+
+@media(max-width:420px){
+    .home-button-container{
+        @include flex(column,center,center);
+    }
+    .home-button-container > a{
+        margin-bottom: .5rem;
     }
 }

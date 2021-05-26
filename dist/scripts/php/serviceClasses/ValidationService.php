@@ -42,11 +42,14 @@
 
     function emailTaken($email){
       $userDao = new UserDao();
+      // check for user with the email
       $user = $userDao->getUserByEmail($email);
-      
+
       if(!$user){
+        // email not taken
         return FALSE;
       }else{
+        // email taken
         return TRUE;
       }
     }

@@ -3,31 +3,35 @@ import {fetchPost,createFormData,showSnackbar,basePath,Operation} from "./common
 
 const signupForm = $(".signup-form");
 
+// intialize createAccOperation to be called on account creation.
 let createAcc = createAccOperation();
 
 
 signupForm.submit(function(e){
     e.preventDefault();
+    // check for form validity
     if(signupForm.valid()){
-        
+        // disable create account btn with loading visual
         createAcc.start();
 
         const url = $(this).attr("action");
+        // serialize input values as formData
         const formData = createFormData(".signup-form");
         
         fetchPost(url,formData).then(res=>{
-            if(res.status >=200 && res.status<=299){
-                return res.json();
-            }else{
-                throw new Error(res.statusText);
-            }
+            return res.json();
         })
         .then(data=>{
-            const message = data.message;
-            signupSuccess(message);
+            if(data.code >=200 && data.code<=299){
+                const message = data.message;
+                signupSuccess(message);
+            }else{
+                throw new Error(data.message);
+            }
         })
         .catch(e=>{
             showSnackbar(e.message,"error-snackbar");
+            // stop loading visual also enable create account btn
             createAcc.end();
         });
     } 
@@ -37,7 +41,7 @@ signupForm.submit(function(e){
 
 
 function signupSuccess(message){
-    const errorIndingIcons =  document.querySelectorAll(".invalid-input-indicator i");
+    const errorIndingIcons =  document.querySelectorAll(".input-validity-indicator i");
 
     createAcc.end();
     // reset the validators

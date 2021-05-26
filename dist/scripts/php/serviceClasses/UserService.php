@@ -26,15 +26,18 @@
 
     function signupUser($user){
       try{
+        // throws DataBaseException
         $this->userDao->insertUser($user);
       }
       catch(Exception $e){
+        // re throw to control layer
         throw $e;
       }
     }
 
     function loginUser($email,$password){
       try{
+        // throws unauthorized Exception
         $user = $this->authenticateUser($email,$password);
 
         $uuid = $user['uuid'];
@@ -44,6 +47,7 @@
 
         return $authenticatedResponseAssoc;
       }catch(Exception $e){
+        // re throw to control layer
         throw $e;
       }
     }

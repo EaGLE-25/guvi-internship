@@ -12,11 +12,6 @@ class User{
   private $passwordHash;
   private $dob;
   private $mobile;
-  private $validationService;
-
-  function __construct(){
-    $this->validationService = new ValidationService();
-  }
 
   public function getUuid(){
     return $this->uuid;

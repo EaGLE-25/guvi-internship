@@ -28,6 +28,7 @@
         function insertUser($user){
             try{
                 $sql ='INSERT INTO `users` (uuid,name,email,passwordHash,dob,mobile) VALUES(:uuid,:name, :email, :passwordHash, :dob, :mob)';
+                // prepare sql query with named parameters
                 $stmt = $this->pdo->prepare($sql);
     
                 $uuid = $user->getUuid();
@@ -36,14 +37,16 @@
                 $passwordHash = $user->getPasswordHash();
                 $dob = $user->getDob();
                 $mob = $user->getMobile();
-    
+                
+                // bind named parameters
                 $stmt->bindParam(":uuid",$uuid);
                 $stmt->bindParam(":name", $name);
                 $stmt->bindParam(":email",$email);
                 $stmt->bindParam(":passwordHash",$passwordHash);
                 $stmt->bindParam(":dob",$dob);
                 $stmt->bindParam(":mob",$mob);
-    
+                
+                // execute the statement, throws exception
                 $stmt->execute();
             }
             catch(Exception $e){
@@ -54,6 +57,7 @@
         function updateUser($user){
             try{
                 $sql ="UPDATE users SET name=:name,email=:email,dob=:dob,mobile=:mob WHERE uuid=:uuid";
+                // prepare sql query with named parameters
                 $stmt = $this->pdo->prepare($sql);
                 
                 $uuid = $user->getUuid();
@@ -63,13 +67,14 @@
                 $mob = $user->getMobile();
 
 
-    
+                // bind named parameters
                 $stmt->bindParam(":name", $name);
                 $stmt->bindParam(":email",$email);
                 $stmt->bindParam(":dob",$dob);
                 $stmt->bindParam(":mob",$mob);
                 $stmt->bindParam(":uuid",$uuid);
-    
+
+                // execute the statement, throws exception
                 $stmt->execute();
             }
             catch(Exception $e){
@@ -80,10 +85,14 @@
         function getUserByEmail($email){
             try{
                 $sql = 'SELECT * FROM `users` WHERE email=:email';
+                // prepare sql query with named parameters
                 $stmt = $this->pdo->prepare($sql);
-    
+                
+                // bind named parameters
                 $stmt->bindParam(":email",$email);
+                // execute the statement, throws exception
                 $stmt->execute();
+                // if successful,fetch row as assosciative array
                 $user = $stmt->fetch(PDO::FETCH_ASSOC);
     
                 return $user;

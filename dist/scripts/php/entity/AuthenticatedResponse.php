@@ -14,7 +14,9 @@
         }
 
         function responseAsJson(){
-            return json_encode(array("code"=>$this->code,"message"=>$this->message,"accessToken"=>$this->accessToken,"uuid"=>$this->uuid));
+            $response_arr = array("code"=>$this->code,"message"=>$this->message,
+            "accessToken"=>$this->accessToken,"uuid"=>$this->uuid);
+            return json_encode($response_arr);
         }
     }
 ?>

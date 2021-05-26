@@ -14,6 +14,7 @@ use service\ValidationService;
     }else if($for == "update"){
         $validationService = new UserUpdateValidationService();
     }
+
     try{
         $validationService->validateEmail($email);
 

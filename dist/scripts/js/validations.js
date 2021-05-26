@@ -63,7 +63,7 @@
       }
     },
     success:function(label,input){  
-      const errorIndicator = $(input).siblings(".invalid-input-indicator");
+      const errorIndicator = $(input).siblings(".input-validity-indicator");
       const wrongInputIcon = errorIndicator.children(".wrong-input");
       const properInputIcon = errorIndicator.children(".proper-input");
 
@@ -73,7 +73,7 @@
     highlight:function(element){
       $(element).removeClass("valid");
       $(element).addClass("invalid");
-      const errorIndicator =  $(element).siblings(".invalid-input-indicator");
+      const errorIndicator =  $(element).siblings(".input-validity-indicator");
       const wrongInputIcon = errorIndicator.children(".wrong-input");
       const properInputIcon = errorIndicator.children(".proper-input");
 
@@ -113,7 +113,7 @@
       }
     },
     success:function(label,input){  
-      const errorIndicator = $(input).siblings(".invalid-input-indicator");
+      const errorIndicator = $(input).siblings(".input-validity-indicator");
       const wrongInputIcon = errorIndicator.children(".wrong-input");
 
       wrongInputIcon.removeClass("show");
@@ -121,7 +121,7 @@
     highlight:function(element){
       $(element).removeClass("valid");
       $(element).addClass("invalid");
-      const errorIndicator =  $(element).siblings(".invalid-input-indicator");
+      const errorIndicator =  $(element).siblings(".input-validity-indicator");
       const wrongInputIcon = errorIndicator.children(".wrong-input");
       
       wrongInputIcon.addClass("show");

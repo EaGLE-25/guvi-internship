@@ -11,7 +11,8 @@
         }
 
         function responseAsJson(){
-            return json_encode(array("code"=>$this->code,"message"=>$this->message));
+            $response_arr = array("code"=>$this->code,"message"=>$this->message);
+            return json_encode($response_arr);
         }
     }
 ?>
