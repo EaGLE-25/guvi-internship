@@ -33,7 +33,24 @@ body{
     min-height: 100vh;
     font-family: 'Montserrat', sans-serif;
 }
-
+// navbar
+.navbar{
+    width: 100%;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 6rem;
+    background: $primaryColor;
+    color: white;
+}
+.logo{
+    @include flex();
+}
+.logo-text{
+    font-family: 'Work Sans', sans-serif;
+    font-weight: 400;
+}
 // home-page styles
 .home-container{
     @include flex(column,center,center);
