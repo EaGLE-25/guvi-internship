@@ -1,0 +1,38 @@
+// input styles
+input{
+    padding: 1rem;
+    font-size: .8rem;
+    border: none;
+    outline: none;
+    background-color: inherit;
+    width: 100%;
+}
+input:disabled{
+    background-color: $inputDisabled;
+}
+
+.inputfield-group{
+    @include flex();
+    border: 1px solid #E5E5E5;
+    max-height: 52px;
+    background-color: $inputBackground;
+    transition: all .3s ease;
+    
+
+    .inputfield-group-btn{
+        padding: 1rem;
+        text-align: center;
+        outline: none;
+        background-color: inherit;
+        border:none;
+        border-left: none;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+    }
+}
+
+.inputfield-group:focus-within{
+    box-shadow: 1px 2px 3px rgba(0, 0, 0, 0.25);
+ }

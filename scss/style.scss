@@ -1,61 +1,26 @@
 @import url('https://fonts.googleapis.com/css2?family=Work+Sans:wght@600&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap');
 
-$primaryColor : #8967D1;
-$inputDisabled:#f4f4f4;
-$inputBackground:#fdfdfd;
-$primaryDisabled:#8967d1d3;
+@import "./resets";
+@import "./variables";
+@import "./mixins";
+@import "./mediaQueries";
 
-@mixin primaryFontStyle{
-    font-family: Montserrat;
-    font-size: 0.75rem;
-    font-style: normal;
-    font-weight: 600;
-    line-height: 0.9375rem;
-    letter-spacing: 0em;
-    text-align: left; 
-}
+// components
+@import "./components/.navbar";
+@import "./components/label";
+@import "./components/input";
+@import "./components/buttons";
+@import "./components/icons";
+@import "./components/snackbar";
 
-@mixin flex($direction:row,$justifyContent:flex-start,$alignItems:stretch){
-    display: flex;
-    flex-direction: $direction;
-    justify-content: $justifyContent;
-    align-items: $alignItems;
-}
-// default styles
-*{
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
-}
+
 
 body{
     min-height: 100vh;
     font-family: 'Montserrat', sans-serif;
 }
-// navbar
-.navbar{
-    width: 100%;
-    height: 50px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: $primaryColor;
-    color: white;
-}
-.logo{
-    @include flex();
-    text-align: center;
-    color: white;
-    text-decoration: none;
-}
-.logo:hover{
-    color: white;
-}
-.logo-text{
-    font-family: 'Work Sans', sans-serif;
-    font-weight: 400;
-}
+
 
 // signup styles
 .create-account-header{
@@ -81,193 +46,11 @@ body{
     width: 49%;
 }
 
-// label styles
-label{
-    margin-bottom: 1rem;
-    color: #7B7B7B;
-    @include primaryFontStyle();     
-}
-
-label.invalid{
-    border: none;
-    margin-bottom: 0;
-    margin-top: .4rem;
-    color: red;
-    font-size: 0.625rem;
-}
-// input styles
-input{
-    padding: 1rem;
-    font-size: .8rem;
-    border: none;
-    outline: none;
-    background-color: inherit;
-    width: 100%;
-}
-input:disabled{
-    background-color: $inputDisabled;
-}
-
-.inputfield-group{
-    @include flex();
-    border: 1px solid #E5E5E5;
-    max-height: 52px;
-    background-color: $inputBackground;
-    transition: all .3s ease;
-    
-
-    .inputfield-group-btn{
-        padding: 1rem;
-        text-align: center;
-        outline: none;
-        background-color: inherit;
-        border:none;
-        border-left: none;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        position: relative;
-    }
-}
-
-.inputfield-group:focus-within{
-    box-shadow: 1px 2px 3px rgba(0, 0, 0, 0.25);
- }
-
-// button styles
-.btn{
-    text-align: center;
-    padding: 1rem;
-    font-weight: 600;
-    border:none;
-    outline: none;
-    cursor: pointer;
-    min-width: 200px;
-
-    &.btn-primary{
-        background-color: $primaryColor;
-        color: white;
-        @include primaryFontStyle();
-        text-align: center;
-        transition: all .5s ease;
-    }
-    &.btn-primary:hover{
-        background-color: #7354b6;
-    }
-    &.btn-primary:disabled{
-        background-color: $primaryDisabled;
-    }
-
-    &.btn-secondary{
-        background-color:transparent;
-        @include primaryFontStyle();
-        color: $primaryColor;
-        text-align: center;
-        border: 2px solid $primaryColor;
-    }
-
-    &.btn-danger{
-        background-color: red;
-        color: white;
-        @include primaryFontStyle();
-        text-align: center;
-        transition: all .5s ease;
-    }
-
-    &.btn-danger:hover{
-        background-color: rgb(228, 1, 1);
-    }
-    &.btn-danger:focus{
-        box-shadow: 0 0 0 0.25rem rgba(228, 1, 1, 0.418);
-    }
-
-    &.btn-primary:focus,&.btn-secondary:focus{
-        box-shadow: 0 0 0 0.25rem rgba(137, 103, 209, 0.493);
-    }
-}
-
-.wide-btn{
-    width: 100%;
-}
-
-// icon styles
-
-.fa-eye-slash:before,.fa-eye::before{
-    color:#969696;
-    cursor: pointer;
-}
-
-.fas.fa-times.wrong-input{
-    position: absolute;
-    color: red;
-    pointer-events: none;
-}
-
-.fas.fa-check.proper-input{
-    position: absolute;
-    color: green;
-    pointer-events: none;
-}
-
-.fas.fa-times.wrong-input.hide{
-    visibility: hidden;
- }
- .fas.fa-check.proper-input.hide{
-     visibility: hidden;
- }
- .fas.fa-times.wrong-input.show{
-     visibility: visible;
- }
- 
- .fas.fa-check.proper-input.show{
-     visibility: visible;
- }
-
 // <a> styles
  .link-btn{
      display: inline-block;
      text-decoration: none;
  }
-
-//  snackbar styles
- .snackbar{
-    position: fixed;
-    bottom: 10px;
-    left: 50%;
-    transform: translateX(-50%);
-  
-    opacity: 0;
-    pointer-events: none;
-  
-    transition: bottom 0.5s, opacity 0.5s;
-  }
-
-  
-  .snackbar > div{
-    background-color: #333;
-    color: white;
-  
-    min-width: 150px;
-    padding: 15px;
-    font-size: 1rem;
-  
-    @include flex(row,center,center);
-
-    border-radius: 5px;
-  }
-  .snackbar.error-snackbar > div{
-      background-color: red;
-  }
-  .snackbar.success-snackbar > div{
-      background-color: green;
-  }
-  
-  .snackbar.show {
-    bottom: 30px;
-    opacity: 1;
-  
-    pointer-events: all;
-  }
 
 //   util styles
 .hide{
@@ -321,27 +104,5 @@ input:disabled{
     100% {
         opacity: 0;
         visibility: hidden;
-    }
-}
-
-// media queries
-@media (max-width:768px){
-    html{
-        font-size: 95%;
-    }
-}
-
-@media(max-width:568px){
-    html{
-        font-size: 90%;
-    }
-}
-
-@media(max-width:420px){
-    .home-button-container{
-        @include flex(column,center,center);
-    }
-    .home-button-container > a{
-        margin-bottom: .5rem;
     }
 }

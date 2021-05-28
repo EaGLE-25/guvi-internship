@@ -1,0 +1,55 @@
+// button styles
+.btn{
+    text-align: center;
+    padding: 1rem;
+    font-weight: 600;
+    border:none;
+    outline: none;
+    cursor: pointer;
+    min-width: 200px;
+
+    &.btn-primary{
+        background-color: $primaryColor;
+        color: white;
+        @include primaryFontStyle();
+        text-align: center;
+        transition: all .5s ease;
+    }
+    &.btn-primary:hover{
+        background-color: #7354b6;
+    }
+    &.btn-primary:disabled{
+        background-color: $primaryDisabled;
+    }
+
+    &.btn-secondary{
+        background-color:transparent;
+        @include primaryFontStyle();
+        color: $primaryColor;
+        text-align: center;
+        border: 2px solid $primaryColor;
+    }
+
+    &.btn-danger{
+        background-color: red;
+        color: white;
+        @include primaryFontStyle();
+        text-align: center;
+        transition: all .5s ease;
+    }
+
+    &.btn-danger:hover{
+        background-color: rgb(228, 1, 1);
+    }
+    &.btn-danger:focus{
+        box-shadow: 0 0 0 0.25rem rgba(228, 1, 1, 0.418);
+    }
+
+    &.btn-primary:focus,&.btn-secondary:focus{
+        box-shadow: 0 0 0 0.25rem rgba(137, 103, 209, 0.493);
+    }
+}
+
+.wide-btn{
+    width: 100%;
+}

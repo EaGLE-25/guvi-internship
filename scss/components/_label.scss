@@ -1,0 +1,14 @@
+// label styles
+label{
+    margin-bottom: 1rem;
+    color: #7B7B7B;
+    @include primaryFontStyle();     
+}
+
+label.invalid{
+    border: none;
+    margin-bottom: 0;
+    margin-top: .4rem;
+    color: red;
+    font-size: 0.625rem;
+}

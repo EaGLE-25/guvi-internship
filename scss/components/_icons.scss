@@ -1,0 +1,31 @@
+// icon styles
+.fa-eye-slash:before,.fa-eye::before{
+    color:#969696;
+    cursor: pointer;
+}
+
+.fas.fa-times.wrong-input{
+    position: absolute;
+    color: red;
+    pointer-events: none;
+}
+
+.fas.fa-check.proper-input{
+    position: absolute;
+    color: green;
+    pointer-events: none;
+}
+
+.fas.fa-times.wrong-input.hide{
+    visibility: hidden;
+ }
+ .fas.fa-check.proper-input.hide{
+     visibility: hidden;
+ }
+ .fas.fa-times.wrong-input.show{
+     visibility: visible;
+ }
+ 
+ .fas.fa-check.proper-input.show{
+     visibility: visible;
+ }

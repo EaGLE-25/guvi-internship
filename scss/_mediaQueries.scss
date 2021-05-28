@@ -1,0 +1,21 @@
+// media queries
+@media (max-width:768px){
+    html{
+        font-size: 95%;
+    }
+}
+
+@media(max-width:568px){
+    html{
+        font-size: 90%;
+    }
+}
+
+@media(max-width:420px){
+    .home-button-container{
+        @include flex(column,center,center);
+    }
+    .home-button-container > a{
+        margin-bottom: .5rem;
+    }
+}

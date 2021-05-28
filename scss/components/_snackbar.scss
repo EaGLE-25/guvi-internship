@@ -1,0 +1,39 @@
+//  snackbar styles
+.snackbar{
+    position: fixed;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+  
+    opacity: 0;
+    pointer-events: none;
+  
+    transition: bottom 0.5s, opacity 0.5s;
+  }
+
+  
+  .snackbar > div{
+    background-color: #333;
+    color: white;
+  
+    min-width: 150px;
+    padding: 15px;
+    font-size: 1rem;
+  
+    @include flex(row,center,center);
+
+    border-radius: 5px;
+  }
+  .snackbar.error-snackbar > div{
+      background-color: red;
+  }
+  .snackbar.success-snackbar > div{
+      background-color: green;
+  }
+  
+  .snackbar.show {
+    bottom: 30px;
+    opacity: 1;
+  
+    pointer-events: all;
+  }
