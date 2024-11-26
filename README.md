@@ -1,8 +1,5 @@
 # A-Auth
 
-# Live
-https://guvi-internship.herokuapp.com/
-
 ## _An application to demonstrate Authentication and Authorization, built with HTML, CSS, Javascript and PHP._
 A authentication and authorization demo. Implemented using Basic HTTP authentication and JSON WEB TOKEN for authorization.
 
